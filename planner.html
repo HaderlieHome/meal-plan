@@ -5,186 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Week Planner</title>
 <meta name="description" content="Plan the week's meals and build a shopping list. Saved on this device; share by export/import.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  /*
-    Week planner + shopping list. Recipes come from the repo's .md files (same
-    source as index.html). The plan is saved in this browser's localStorage and
-    moved between devices with Export / Import (a .json file or a share link).
-  */
-  :root {
-    --bg: #faf7f2;
-    --surface: #ffffff;
-    --surface-2: #f3eee6;
-    --text: #2a2622;
-    --muted: #6f675e;
-    --border: #e6ded2;
-    --accent: #c2410c;
-    --accent-soft: #fde7da;
-    --good: #4d7c0f;
-    --warn: #b45309;
-    --shadow: 0 1px 2px rgba(42, 38, 34, .06), 0 4px 14px rgba(42, 38, 34, .05);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #1a1816;
-      --surface: #23201d;
-      --surface-2: #2c2825;
-      --text: #efe9e1;
-      --muted: #a89f94;
-      --border: #3a3531;
-      --accent: #fb8c4b;
-      --accent-soft: #3d2518;
-      --good: #a3d15c;
-      --warn: #f5b04a;
-      --shadow: none;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #1a1816;
-    --surface: #23201d;
-    --surface-2: #2c2825;
-    --text: #efe9e1;
-    --muted: #a89f94;
-    --border: #3a3531;
-    --accent: #fb8c4b;
-    --accent-soft: #3d2518;
-    --good: #a3d15c;
-    --warn: #f5b04a;
-    --shadow: none;
-  }
-
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
-  a { color: var(--accent); }
-  button, input, select { font: inherit; color: inherit; }
-  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
-
-  header { padding: 28px 0 4px; }
-  header h1 { font-family: Fraunces, Georgia, serif; font-size: clamp(1.9rem, 5vw, 2.6rem); line-height: 1.1; margin: 0 0 6px; }
-  header p { margin: 0; color: var(--muted); }
-  .header-links { margin-top: 8px; font-size: .92rem; }
-
-  .toolbar {
-    position: sticky; top: 0; z-index: 5; background: var(--bg);
-    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
-    padding: 14px 0 12px; border-bottom: 1px solid var(--border); margin-bottom: 20px;
-  }
-  .tabs { display: flex; gap: 6px; }
-  .btn {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
-    padding: 6px 14px; cursor: pointer; font-size: .92rem; white-space: nowrap;
-  }
-  .btn:hover { border-color: var(--accent); }
-  .btn[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
-  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-  .btn.small { padding: 3px 10px; font-size: .82rem; }
-  .spacer { flex: 1; }
-  .icon-btn { background: none; border: 0; cursor: pointer; color: var(--muted); font-size: 1rem; padding: 0 4px; line-height: 1; }
-  .icon-btn:hover { color: var(--accent); }
-
-  /* Week grid */
-  .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; padding-bottom: 40px; }
-  @media (max-width: 980px) { .week { grid-template-columns: 1fr; } }
-  .day { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px; box-shadow: var(--shadow); min-width: 0; }
-  .day h2 { font-family: Fraunces, Georgia, serif; font-size: 1.15rem; margin: 0; }
-  .day-total { font-size: .78rem; color: var(--muted); margin: 2px 0 8px; font-variant-numeric: tabular-nums; }
-  .day-total b { color: var(--text); }
-  .slot { border-top: 1px solid var(--border); padding: 8px 0 4px; }
-  .slot-head { display: flex; justify-content: space-between; align-items: center; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
-  .entry { display: flex; gap: 6px; align-items: flex-start; font-size: .88rem; margin: 5px 0; }
-  .entry a { color: var(--text); text-decoration: none; flex: 1; min-width: 0; overflow-wrap: anywhere; }
-  .entry a:hover { color: var(--accent); }
-  .entry .sub { display: block; font-size: .74rem; color: var(--muted); }
-  .pill { font-size: .68rem; background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 1px 7px; margin-left: 4px; white-space: nowrap; }
-
-  .summary { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
-  .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; min-width: 140px; }
-  .tile b { display: block; font-size: 1.3rem; font-variant-numeric: tabular-nums; }
-  .tile span { font-size: .78rem; color: var(--muted); }
-
-  /* Shopping list */
-  .shop { max-width: 760px; padding-bottom: 48px; }
-  .section { margin-bottom: 22px; }
-  .section h2 { font-family: Fraunces, Georgia, serif; font-size: 1.2rem; margin: 0 0 6px; }
-  .item { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
-  .item input { margin-top: 4px; accent-color: var(--accent); width: 18px; height: 18px; flex: none; }
-  .item .for { display: block; font-size: .76rem; color: var(--muted); }
-  .item.done .txt { text-decoration: line-through; color: var(--muted); }
-  .add-item { display: flex; gap: 8px; margin: 10px 0 24px; }
-  .add-item input { flex: 1; min-width: 0; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); }
-
-  /* Dialog */
-  dialog { border: 1px solid var(--border); border-radius: 16px; background: var(--surface); color: var(--text); padding: 0; width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
-  dialog::backdrop { background: rgba(0, 0, 0, .4); }
-  .dlg { display: flex; flex-direction: column; max-height: calc(100vh - 48px); }
-  .dlg-head { padding: 16px 16px 10px; border-bottom: 1px solid var(--border); }
-  .dlg-head h3 { margin: 0 0 8px; font-family: Fraunces, Georgia, serif; }
-  .dlg-head input { width: 100%; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); }
-  .dlg-body { overflow-y: auto; padding: 6px 16px; }
-  .dlg-foot { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  .pick { display: flex; justify-content: space-between; gap: 10px; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--border); padding: 9px 0; cursor: pointer; }
-  .pick:hover .pick-name { color: var(--accent); }
-  .pick-meta { font-size: .78rem; color: var(--muted); white-space: nowrap; }
-  .pick[aria-pressed="true"] { background: var(--accent-soft); }
-  label.inline { display: flex; gap: 6px; align-items: center; font-size: .9rem; }
-  label.inline select, label.inline input[type="number"] { padding: 4px 8px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); }
-  label.inline input[type="number"] { width: 64px; }
-
-  .notice { background: var(--accent-soft); border-radius: 12px; padding: 12px 16px; margin: 0 0 16px; font-size: .92rem; }
-  .muted { color: var(--muted); }
-  .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: .92rem; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 20; }
-  .toast.show { opacity: 1; }
-  input[type="file"] { display: none; }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>Week Planner</h1>
-    <p>Pick the week's meals, see daily totals, and get a shopping list. Saved on this device only. Use Export to send it to someone.</p>
-    <div class="header-links"><a href="./">← Recipes</a></div>
-  </header>
-
-  <div class="toolbar">
-    <div class="tabs">
-      <button class="btn" data-view="week">This Week</button>
-      <button class="btn" data-view="shop">Shopping List</button>
+<!--
+  Week planner + shopping list. Recipes come from the repo's .md files (same
+  source as index.html). The plan is saved in this browser's localStorage and
+  moved between devices with Export / Import (a .json file or a share link).
+-->
+<div class="page stack" style="gap:22px">
+  <div class="topbar">
+    <a class="back" href="./">← Recipes</a>
+    <button class="btn btn-secondary" id="menu-btn" aria-haspopup="true" aria-expanded="false" style="padding:6px 12px">Share &amp; file</button>
+    <div class="menu elev-md" id="menu" hidden>
+      <button class="btn btn-ghost" id="export-file">Export file</button>
+      <button class="btn btn-ghost" id="copy-link">Copy share link</button>
+      <button class="btn btn-ghost" id="import-btn">Import</button>
+      <button class="btn btn-ghost sep" id="clear-week">New week</button>
     </div>
-    <span class="spacer"></span>
-    <button class="btn small" id="export-file">Export file</button>
-    <button class="btn small" id="copy-link">Copy share link</button>
-    <button class="btn small" id="import-btn">Import</button>
-    <button class="btn small" id="clear-week">New week</button>
-    <input type="file" id="import-file" accept="application/json,.json">
+    <input type="file" id="import-file" accept="application/json,.json" hidden>
   </div>
 
-  <main id="app"><p class="muted">Loading recipes…</p></main>
+  <header class="planner-head">
+    <h1>Week Planner</h1>
+    <p id="subtitle">Pick the week's meals, see daily totals, and get a shopping list. Saved on this device only.</p>
+  </header>
+
+  <div class="seg tabs" role="tablist">
+    <button class="seg-opt" data-view="week">This Week</button>
+    <button class="seg-opt" data-view="shop">Shopping List · <span id="remaining">0</span></button>
+  </div>
+
+  <main id="app" class="stack" style="gap:22px"><p class="muted">Loading recipes…</p></main>
 </div>
 
-<dialog id="picker">
-  <form method="dialog" class="dlg">
-    <div class="dlg-head">
-      <h3 id="picker-title">Add a meal</h3>
-      <input type="search" id="picker-q" placeholder="Search recipes…" autocomplete="off">
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-h">
+  <form method="dialog" class="sheet-body">
+    <div class="sheet-title"><h3 id="sheet-h">Add a meal</h3><span id="sheet-where"></span></div>
+    <label class="visually-hidden" for="sheet-q">Search recipes</label>
+    <input class="input" type="search" id="sheet-q" placeholder="Search recipes" autocomplete="off">
+    <div class="pick-list" id="pick-list"></div>
+    <div class="field">
+      <label>Meals it covers</label>
+      <div class="seg cover" id="cover"></div>
+      <p class="cover-note">Extra meals go on the following days as leftovers. <span id="cover-note"></span></p>
     </div>
-    <div class="dlg-body" id="picker-list"></div>
-    <div class="dlg-foot">
-      <label class="inline">Meals it covers
-        <input type="number" id="picker-count" min="1" max="7" value="1">
-      </label>
-      <span class="muted" style="font-size:.8rem">Extra meals go on the following days as leftovers.</span>
-      <span class="spacer"></span>
-      <button class="btn" value="cancel">Cancel</button>
-      <button class="btn primary" id="picker-add" value="add" disabled>Add</button>
+    <div class="sheet-actions">
+      <button class="btn btn-secondary" value="cancel">Cancel</button>
+      <button class="btn btn-primary blueprint" value="add" id="sheet-add" disabled><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Add</button>
     </div>
   </form>
 </dialog>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
 (() => {
@@ -192,9 +65,12 @@
   const REPO = "HaderlieHome/meal-plan";
   const BRANCH = "main";
   const MEALS = ["Breakfast", "Lunch", "Dinner", "Snack"];
+  const SLOT_LABEL = { Breakfast: "Bkfst", Lunch: "Lunch", Dinner: "Dinner", Snack: "Snack" };
   const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  const TARGETS = [1600, 2000];
   const STORE_KEY = "mp-planner-v1";
+  const corners = `<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>`;
+  const ICON_PLUS = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>`;
+  const ICON_X = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>`;
 
   const app = document.getElementById("app");
   let recipes = [];
@@ -206,6 +82,7 @@
   const slug = s => s.toLowerCase().trim().replace(/[^\p{L}\p{N}\s-]/gu, "").replace(/\s/g, "-");
   const pretty = s => s.replace(/-/g, " ").replace(/^\w/, c => c.toUpperCase());
   const num = s => (s == null ? null : parseFloat(String(s).replace(/,/g, "")));
+  const fmt = n => Math.round(n).toLocaleString("en-US");
   const keyOf = r => `${r.path}#${r.anchor}`;
   const toast = msg => { const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 2200); };
 
@@ -231,7 +108,7 @@
   function field(body, name) { const m = body.match(new RegExp(`\\*\\*${name}:\\*\\*\\s*([^·\\n]+)`)); return m ? m[1].trim() : ""; }
   function nutrient(body, name) { const m = body.match(new RegExp(`^\\|\\s*${name}\\s*\\|\\s*~?([\\d,.]+)`, "m")); return m ? num(m[1]) : null; }
   function ingredients(body) {
-    const m = body.match(/^### Ingredients[^\n]*\n([\s\S]*?)(?=^### |\s*$(?![\s\S]))/m);
+    const m = body.match(/^### Ingredients[^\n]*\n([\s\S]*?)(?=^### )/m);
     if (!m) return [];
     return m[1].split("\n").filter(l => /^\s*- /.test(l)).map(l => l.replace(/^\s*- /, "").replace(/\*\*/g, "").trim());
   }
@@ -241,12 +118,11 @@
       const nl = chunk.indexOf("\n");
       const title = chunk.slice(0, nl).trim();
       const body = chunk.slice(nl + 1);
-      const serves = field(body, "Serves");
-      const servings = num((serves.match(/\d+/) || [])[0]) || 2;
+      const servings = num((field(body, "Serves").match(/\d+/) || [])[0]) || 2;
       return {
         path, meal, protein: pretty(file.replace(/\.md$/, "")), title, anchor: slug(title),
-        servings, mealsForTwo: Math.max(1, Math.floor(servings / 2)),
-        kcal: nutrient(body, "Calories"), protein_g: nutrient(body, "Protein"), fiber: nutrient(body, "Fiber"),
+        mealsForTwo: Math.max(1, Math.floor(servings / 2)),
+        kcal: nutrient(body, "Calories"), protein_g: nutrient(body, "Protein"),
         ingredients: ingredients(body),
       };
     });
@@ -270,94 +146,112 @@
   }
 
   // ---- Week view ----------------------------------------------------------
+  const allEntries = () => DAYS.flatMap(d => MEALS.flatMap(m => plan.days[d][m]));
   function dayTotals(d) {
-    let kcal = 0, protein = 0;
+    let kcal = 0, protein = 0, cook = false;
     for (const m of MEALS) for (const e of plan.days[d][m]) {
       const r = byKey[e.key]; if (!r) continue;
       kcal += r.kcal || 0; protein += r.protein_g || 0;
+      if (!e.leftover) cook = true;
     }
-    return { kcal: Math.round(kcal), protein: Math.round(protein) };
+    return { kcal, protein, cook };
   }
 
   function renderWeek() {
-    const planned = DAYS.flatMap(d => MEALS.flatMap(m => plan.days[d][m])).length;
-    const totals = DAYS.map(dayTotals).filter(t => t.kcal > 0);
-    const avg = k => totals.length ? Math.round(totals.reduce((s, t) => s + t[k], 0) / totals.length) : 0;
+    const totals = DAYS.map(dayTotals);
+    const planned = totals.filter(t => t.kcal > 0);
+    const avg = k => (planned.length ? planned.reduce((s, t) => s + t[k], 0) / planned.length : 0);
+    const cookDays = totals.filter(t => t.cook).length;
     app.innerHTML = `
-      ${planned ? "" : `<div class="notice">Tap <b>+</b> on any slot to add a meal. Batch recipes can fill several days at once. Leftovers aren't added to the shopping list twice.</div>`}
-      <div class="summary">
-        <div class="tile"><b>${planned}</b><span>meals planned</span></div>
-        <div class="tile"><b>${avg("kcal") || "–"}</b><span>avg kcal / person / planned day</span></div>
-        <div class="tile"><b>${avg("protein") ? avg("protein") + " g" : "–"}</b><span>avg protein / person / planned day</span></div>
+      <div class="stats">
+        <div><span class="micro">Avg protein</span><b class="accent">${planned.length ? fmt(avg("protein")) + "g" : "–"}</b></div>
+        <div><span class="micro">Avg kcal</span><b>${planned.length ? fmt(avg("kcal")) : "–"}</b></div>
+        <div><span class="micro">Cook days</span><b>${cookDays}</b></div>
       </div>
-      <div class="week">${DAYS.map(d => {
-        const t = dayTotals(d);
-        const status = t.kcal === 0 ? "" : t.kcal <= TARGETS[0] ? ` <span style="color:var(--good)">≤ 1,600</span>` : t.kcal <= TARGETS[1] ? ` <span style="color:var(--good)">≤ 2,000</span>` : ` <span style="color:var(--warn)">over 2,000</span>`;
-        return `<section class="day">
-          <h2>${d}</h2>
-          <div class="day-total"><b>${t.kcal || 0}</b> kcal · <b>${t.protein || 0}</b> g protein per person${status}</div>
+      ${allEntries().length ? "" : `<div class="notice">Tap <b>+</b> on any meal to add a recipe. Batch recipes can fill several days at once, and leftovers aren't added to the shopping list twice.</div>`}
+      <div class="days">${DAYS.map((d, di) => {
+        const t = totals[di];
+        return `<section class="day blueprint">${corners}
+          <div class="day-head">
+            <span class="name">${d}</span>
+            <span class="totals">${fmt(t.kcal)} kcal · <strong>${fmt(t.protein)}g</strong>${t.kcal > 2000 ? ` <span class="over">· over 2,000</span>` : ""}</span>
+          </div>
           ${MEALS.map(m => `<div class="slot">
-            <div class="slot-head"><span>${m}</span><button class="icon-btn" title="Add ${m.toLowerCase()}" data-add="${d}|${m}">＋</button></div>
-            ${plan.days[d][m].map((e, i) => {
+            <span class="slot-label">${SLOT_LABEL[m]}</span>
+            <div class="slot-entries">${plan.days[d][m].length ? plan.days[d][m].map((e, i) => {
               const r = byKey[e.key];
-              const name = r ? esc(r.title) : `<span class="muted">Missing recipe</span>`;
-              const sub = r ? `${r.kcal ?? "–"} kcal · ${r.protein_g ?? "–"} g protein` : esc(e.key);
+              const title = r ? esc(r.title) : `<span class="muted">Missing recipe</span>`;
               const href = r ? `./#/${encodeURI(r.path)}/${r.anchor}` : "#";
-              return `<div class="entry"><a href="${href}">${name}${e.leftover ? `<span class="pill">leftovers</span>` : ""}<span class="sub">${sub}</span></a>
-                <button class="icon-btn" title="Remove" data-del="${d}|${m}|${i}">✕</button></div>`;
-            }).join("")}
+              return `<div class="entry">
+                <a href="${href}" title="${r ? `${r.kcal ?? "–"} kcal · ${r.protein_g ?? "–"} g protein` : ""}">${title}</a>
+                <span class="tag ${e.leftover ? "tag-neutral" : "tag-accent"}">${e.leftover ? "Leftover" : "Cook"}</span>
+                <button class="btn btn-icon sm" aria-label="Remove" data-del="${d}|${m}|${i}">${ICON_X}</button>
+              </div>`;
+            }).join("") : `<span class="slot-empty">—</span>`}</div>
+            <button class="btn add" aria-label="Add ${m.toLowerCase()} on ${d}" data-add="${d}|${m}">${ICON_PLUS}</button>
           </div>`).join("")}
         </section>`;
       }).join("")}</div>`;
-    app.querySelectorAll("[data-add]").forEach(b => b.onclick = () => openPicker(...b.dataset.add.split("|")));
+    app.querySelectorAll("[data-add]").forEach(b => b.onclick = () => openSheet(...b.dataset.add.split("|")));
     app.querySelectorAll("[data-del]").forEach(b => b.onclick = () => {
       const [d, m, i] = b.dataset.del.split("|");
-      plan.days[d][m].splice(+i, 1); save(); renderWeek();
+      plan.days[d][m].splice(+i, 1); save(); render();
     });
   }
 
-  // ---- Picker dialog ------------------------------------------------------
-  const dlg = document.getElementById("picker");
-  const pq = document.getElementById("picker-q");
-  const plist = document.getElementById("picker-list");
-  const pcount = document.getElementById("picker-count");
-  const padd = document.getElementById("picker-add");
-  let pick = { day: null, meal: null, key: null };
+  // ---- Add-a-meal sheet ---------------------------------------------------
+  const sheet = document.getElementById("sheet");
+  const sq = document.getElementById("sheet-q");
+  const plist = document.getElementById("pick-list");
+  const cover = document.getElementById("cover");
+  const addBtn = document.getElementById("sheet-add");
+  let pick = { day: null, meal: null, key: null, n: 1 };
 
-  function openPicker(day, meal) {
-    pick = { day, meal, key: null };
-    document.getElementById("picker-title").textContent = `Add ${meal.toLowerCase()} · ${day}`;
-    pq.value = ""; pcount.value = 1; padd.disabled = true;
-    renderPickList();
-    dlg.showModal();
-    pq.focus();
+  function openSheet(day, meal) {
+    pick = { day, meal, key: null, n: 1 };
+    document.getElementById("sheet-where").textContent = `${day} · ${meal}`;
+    sq.value = ""; addBtn.disabled = true;
+    renderPicks(); renderCover();
+    sheet.showModal();
   }
-  function renderPickList() {
-    const q = pq.value.toLowerCase();
-    // Recipes for this meal time first, then everything else (e.g. leftover dinner for lunch).
+  function renderPicks() {
+    const q = sq.value.toLowerCase();
+    // This meal time's recipes first, then everything else (e.g. leftover dinner for lunch).
     const list = recipes
       .filter(r => !q || (r.title + " " + r.protein + " " + r.meal).toLowerCase().includes(q))
-      .sort((a, b) => (b.meal === pick.meal) - (a.meal === pick.meal) || a.protein.localeCompare(b.protein));
+      .sort((a, b) => (b.meal === pick.meal) - (a.meal === pick.meal) || a.protein.localeCompare(b.protein) || a.title.localeCompare(b.title));
     plist.innerHTML = list.map(r => `<button type="button" class="pick" data-key="${esc(keyOf(r))}" aria-pressed="${pick.key === keyOf(r)}">
-        <span><span class="pick-name">${esc(r.title)}</span><br><span class="pick-meta">${esc(r.meal)} · ${esc(r.protein)} · makes ${r.mealsForTwo} meal${r.mealsForTwo > 1 ? "s" : ""} for two</span></span>
-        <span class="pick-meta">${r.kcal ?? "–"} kcal<br>${r.protein_g ?? "–"} g</span>
-      </button>`).join("") || `<p class="muted">No recipes match.</p>`;
+        <span class="dot"></span>
+        <span><span class="pick-name">${esc(r.title)}</span><span class="pick-sub">${esc(r.meal)} · ${esc(r.protein)}${r.mealsForTwo > 1 ? ` · makes ${r.mealsForTwo} meals for two` : ""}</span></span>
+        <span class="pick-nums"><strong>${r.protein_g ?? "–"}g</strong> · ${r.kcal ?? "–"}</span>
+      </button>`).join("") || `<p class="muted" style="padding:12px 0">No recipes match.</p>`;
     plist.querySelectorAll(".pick").forEach(b => b.onclick = () => {
       pick.key = b.dataset.key;
-      pcount.value = Math.min(byKey[pick.key].mealsForTwo, 7 - DAYS.indexOf(pick.day));
-      padd.disabled = false;
-      renderPickList();
+      pick.n = Math.min(byKey[pick.key].mealsForTwo, DAYS.length - DAYS.indexOf(pick.day));
+      addBtn.disabled = false;
+      plist.querySelectorAll(".pick").forEach(x => x.setAttribute("aria-pressed", x === b));
+      renderCover();
     });
   }
-  pq.oninput = renderPickList;
-  dlg.addEventListener("close", () => {
-    if (dlg.returnValue !== "add" || !pick.key) return;
-    const n = Math.max(1, Math.min(+pcount.value || 1, 7));
+  function renderCover() {
+    const left = DAYS.length - DAYS.indexOf(pick.day);
+    const max = Math.max(4, pick.key ? byKey[pick.key].mealsForTwo : 1);
+    cover.style.gridTemplateColumns = `repeat(${max}, 1fr)`;
+    cover.innerHTML = Array.from({ length: max }, (_, i) => i + 1).map(n =>
+      `<button type="button" class="seg-opt" data-n="${n}" aria-pressed="${pick.n === n}" ${n > left ? "disabled" : ""}>${n}</button>`).join("");
+    cover.querySelectorAll("[data-n]").forEach(b => b.onclick = () => { pick.n = +b.dataset.n; renderCover(); });
+    const later = DAYS.slice(DAYS.indexOf(pick.day) + 1, DAYS.indexOf(pick.day) + pick.n);
+    document.getElementById("cover-note").textContent = later.length ? `Also fills ${later.join(", ")} ${pick.meal.toLowerCase()}.` : "";
+  }
+  sq.oninput = renderPicks;
+  sheet.addEventListener("click", e => { if (e.target === sheet) sheet.close("cancel"); });
+  sheet.addEventListener("close", () => {
+    if (sheet.returnValue !== "add" || !pick.key) return;
     const start = DAYS.indexOf(pick.day);
-    for (let i = 0; i < n && start + i < DAYS.length; i++) {
+    for (let i = 0; i < pick.n && start + i < DAYS.length; i++) {
       plan.days[DAYS[start + i]][pick.meal].push({ key: pick.key, leftover: i > 0 });
     }
-    save(); renderWeek();
+    save(); render();
   });
 
   // ---- Shopping list ------------------------------------------------------
@@ -376,7 +270,7 @@
   function shoppingItems() {
     // Count how many times each recipe gets cooked (leftover entries don't count).
     const cooks = {};
-    for (const d of DAYS) for (const m of MEALS) for (const e of plan.days[d][m]) if (!e.leftover) cooks[e.key] = (cooks[e.key] || 0) + 1;
+    for (const e of allEntries()) if (!e.leftover) cooks[e.key] = (cooks[e.key] || 0) + 1;
     const items = [];
     for (const [key, times] of Object.entries(cooks)) {
       const r = byKey[key]; if (!r) continue;
@@ -385,52 +279,72 @@
     plan.custom.forEach((c, i) => items.push({ id: `custom|${c}`, text: c, times: 1, recipe: null, section: "Extras", customIndex: i }));
     return items;
   }
+  function updateRemaining() {
+    document.getElementById("remaining").textContent = shoppingItems().filter(i => !plan.checked[i.id]).length;
+  }
 
   function renderShop() {
     const items = shoppingItems();
+    const done = items.filter(i => plan.checked[i.id]).length;
     const groups = ORDER.map(s => [s, items.filter(i => i.section === s)]).filter(([, l]) => l.length);
-    const left = items.filter(i => !plan.checked[i.id]).length;
-    app.innerHTML = `<div class="shop">
-      ${items.length ? `<p class="muted">${left} of ${items.length} items left. Quantities are per batch, as written in each recipe. <b>×2</b> means you're cooking that recipe twice this week.</p>`
-        : `<div class="notice">Your shopping list fills in automatically from the meals on <b>This Week</b>.</div>`}
-      <div class="add-item"><input id="custom-text" placeholder="Add something else (paper towels, coffee…)"><button class="btn" id="custom-add">Add</button></div>
-      ${groups.map(([s, list]) => `<div class="section"><h2>${s}</h2>
-        ${list.map(i => `<label class="item ${plan.checked[i.id] ? "done" : ""}">
-          <input type="checkbox" data-id="${esc(i.id)}" ${plan.checked[i.id] ? "checked" : ""}>
-          <span><span class="txt">${esc(i.text)}${i.times > 1 ? ` <b>×${i.times}</b>` : ""}</span>
-          ${i.recipe ? `<span class="for">${esc(i.recipe)}</span>` : `<span class="for"><button type="button" class="icon-btn" data-rm="${i.customIndex}">remove</button></span>`}</span>
-        </label>`).join("")}
-      </div>`).join("")}
-      ${items.some(i => plan.checked[i.id]) ? `<button class="btn small" id="uncheck">Uncheck all</button>` : ""}
+    app.innerHTML = `<div class="shop stack" style="gap:22px">
+      ${items.length
+        ? `<div class="shop-status"><span>${done} of ${items.length} in the cart</span><button class="btn btn-ghost" id="clear-checks" style="font-size:13px">Clear checks</button></div>`
+        : `<div class="notice">The list fills in from the meals on <b>This Week</b>. Amounts are per batch, as written in each recipe.</div>`}
+      <div class="add-row">
+        <label class="visually-hidden" for="custom-text">Add an item</label>
+        <input class="input" id="custom-text" placeholder="Add something else (coffee, paper towels…)">
+        <button class="btn btn-secondary" id="custom-add">Add</button>
+      </div>
+      <div class="stack" style="gap:26px">${groups.map(([s, list]) => `<div class="aisle stack">
+        <h6>${s}</h6>
+        ${list.map(i => `<div class="item ${plan.checked[i.id] ? "done" : ""}" role="checkbox" tabindex="0" aria-checked="${!!plan.checked[i.id]}" data-id="${esc(i.id)}">
+          <span class="box">${plan.checked[i.id] ? "✓" : ""}</span>
+          <span><span class="name">${esc(i.text)}</span>${i.recipe ? `<span class="for">${esc(i.recipe)}</span>` : ""}</span>
+          ${i.recipe
+            ? `<span class="qty">${i.times > 1 ? "×" + i.times : ""}</span>`
+            : `<button class="btn btn-icon sm" aria-label="Remove ${esc(i.text)}" data-rm="${i.customIndex}">${ICON_X}</button>`}
+        </div>`).join("")}
+      </div>`).join("")}</div>
     </div>`;
-    app.querySelectorAll("[data-id]").forEach(cb => cb.onchange = () => {
-      if (cb.checked) plan.checked[cb.dataset.id] = true; else delete plan.checked[cb.dataset.id];
-      save(); cb.closest(".item").classList.toggle("done", cb.checked);
-      const l = shoppingItems().filter(i => !plan.checked[i.id]).length;
-      const p = app.querySelector(".shop > p"); if (p) p.firstChild.textContent = `${l} of ${items.length} items left. `;
+    const toggle = el => {
+      const id = el.dataset.id;
+      if (plan.checked[id]) delete plan.checked[id]; else plan.checked[id] = true;
+      save(); renderShop(); updateRemaining();
+      app.querySelector(`[data-id="${CSS.escape(id)}"]`)?.focus();
+    };
+    app.querySelectorAll(".item").forEach(el => {
+      el.onclick = e => { if (!e.target.closest("[data-rm]")) toggle(el); };
+      el.onkeydown = e => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); toggle(el); } };
     });
-    app.querySelectorAll("[data-rm]").forEach(b => b.onclick = e => { e.preventDefault(); plan.custom.splice(+b.dataset.rm, 1); save(); renderShop(); });
+    app.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => { plan.custom.splice(+b.dataset.rm, 1); save(); render(); });
     const input = app.querySelector("#custom-text");
-    const addCustom = () => { const v = input.value.trim(); if (!v) return; plan.custom.push(v); save(); renderShop(); };
+    const addCustom = () => { const v = input.value.trim(); if (!v) return; plan.custom.push(v); save(); render(); app.querySelector("#custom-text").focus(); };
     app.querySelector("#custom-add").onclick = addCustom;
     input.onkeydown = e => { if (e.key === "Enter") addCustom(); };
-    const un = app.querySelector("#uncheck");
-    if (un) un.onclick = () => { plan.checked = {}; save(); renderShop(); };
+    const cc = app.querySelector("#clear-checks");
+    if (cc) cc.onclick = () => { plan.checked = {}; save(); render(); };
   }
 
-  // ---- Export / Import ----------------------------------------------------
+  // ---- Share & file menu --------------------------------------------------
+  const menu = document.getElementById("menu");
+  const menuBtn = document.getElementById("menu-btn");
+  const setMenu = open => { menu.hidden = !open; menuBtn.setAttribute("aria-expanded", open); };
+  menuBtn.onclick = e => { e.stopPropagation(); setMenu(menu.hidden); };
+  document.addEventListener("click", e => { if (!menu.hidden && !menu.contains(e.target)) setMenu(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
   const b64encode = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
   const b64decode = s => decodeURIComponent(escape(atob(s.replace(/-/g, "+").replace(/_/g, "/"))));
 
   function applyImport(data) {
     const next = normalize(data);
     const count = DAYS.flatMap(d => MEALS.flatMap(m => next.days[d][m])).length;
-    if (!confirm(`Replace your current week with the imported plan (${count} meals)?`)) return false;
+    if (!confirm(`Replace your current week with the imported plan (${count} meals)?`)) return;
     plan = next; save(); render(); toast("Plan imported");
-    return true;
   }
-
   document.getElementById("export-file").onclick = () => {
+    setMenu(false);
     const blob = new Blob([JSON.stringify(plan, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -439,18 +353,20 @@
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   };
   document.getElementById("copy-link").onclick = async () => {
+    setMenu(false);
     const url = `${location.origin}${location.pathname}#import=${b64encode(JSON.stringify(plan))}`;
     try { await navigator.clipboard.writeText(url); toast("Share link copied"); }
     catch { prompt("Copy this link:", url); }
   };
   const fileInput = document.getElementById("import-file");
-  document.getElementById("import-btn").onclick = () => fileInput.click();
+  document.getElementById("import-btn").onclick = () => { setMenu(false); fileInput.click(); };
   fileInput.onchange = async () => {
     const f = fileInput.files[0]; fileInput.value = "";
     if (!f) return;
     try { applyImport(JSON.parse(await f.text())); } catch (e) { alert("Couldn't import that file: " + e.message); }
   };
   document.getElementById("clear-week").onclick = () => {
+    setMenu(false);
     if (!confirm("Clear the whole week and shopping list?")) return;
     plan = emptyPlan(); save(); render();
   };
@@ -465,7 +381,11 @@
   document.querySelectorAll("[data-view]").forEach(b => b.onclick = () => { view = b.dataset.view; render(); });
   function render() {
     document.querySelectorAll("[data-view]").forEach(b => b.setAttribute("aria-pressed", b.dataset.view === view));
+    document.getElementById("subtitle").textContent = view === "shop"
+      ? "Everything on this week's plan, sorted by store section."
+      : "Pick the week's meals, see daily totals, and get a shopping list. Saved on this device only.";
     view === "shop" ? renderShop() : renderWeek();
+    updateRemaining();
   }
 
   loadSaved();

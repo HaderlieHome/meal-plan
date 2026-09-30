@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link rel="stylesheet" href="styles.css"><style>body{margin:0;background:#e4e5e7}a{color:var(--color-accent-700)}a:hover{color:var(--color-accent-800)}.dv-turn{padding:40px 44px 32px;scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 8px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:var(--color-bg);border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}.dv-note{width:390px;font:11px/1.5 ui-monospace,Menlo,monospace;color:rgba(0,0,0,.5)}</style></helmet>
+
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Industry system, tuned light and airy · phone width (390)</span></div>
+<p style="margin:0 0 28px;max-width:780px;font:13px/1.55 system-ui,sans-serif;color:rgba(0,0,0,.6);text-wrap:pretty">Recipe content is placeholder, because the live pages load recipes by script. <a class="dv-oid" href="#1b">1b</a> and <a class="dv-oid" href="#1c">1c</a> use plain markdown elements only (h1, h2, p, em, strong, table, ul, ol, blockquote), styled by one shared CSS file. To keep it airy: generous whitespace, hairline frames, and steel blue used only for actions and protein numbers. Blueprint corner marks go on the elements you act on (recipe cards, day cards, the primary button), so the markdown pages stay plain.</p>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Index · recipe list</div>
+<div class="dv-card" style="width:390px">
+<div style="padding:var(--space-4) 22px 36px;display:flex;flex-direction:column;gap:28px">
+<nav class="nav" style="padding:0;gap:18px"><span class="nav-brand">Meal Plan</span><a href="#1c">About</a><a href="#">GitHub</a></nav>
+<header style="display:flex;flex-direction:column;gap:10px;padding-top:18px">
+<span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700)">Recipes for two</span>
+<h1 style="margin:0;font-size:48px;line-height:.98">High protein.<br>Low effort.</h1>
+<p style="margin:0;font-size:15px;color:var(--color-neutral-700);text-wrap:pretty">High-protein, low-to-mid calorie meals for two. Lazy cooking, meal-prep friendly, and filling for the calories.</p>
+</header>
+<div style="display:flex;flex-direction:column;gap:12px">
+<a href="#1d" class="btn btn-primary blueprint" style="justify-content:space-between;padding:14px 16px;font-size:17px;border-radius:0"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Week planner &amp; shopping list<span>→</span></a>
+<a href="#1c" class="btn btn-secondary" style="justify-content:space-between;padding:12px 16px;font-size:15px">About the plan &amp; nutrition targets<span style="color:var(--color-neutral-600)">→</span></a>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<input class="input" placeholder="Search recipes or ingredients" style="min-height:44px;background:transparent">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--color-divider)">
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="3"><button onClick="{{ g.open }}" style="{{ g.style }}"><span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-600)">{{ g.name }}</span><span style="font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ g.value }} ▾</span></button></sc-for>
+</div>
+<sc-if value="{{ panelOpen }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:10px;padding:14px;border:1px solid var(--color-divider);margin-top:-13px;border-top:none">
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+<sc-for list="{{ panelOpts }}" as="o" hint-placeholder-count="5"><button onClick="{{ o.pick }}" style="{{ o.style }}">{{ o.label }}</button></sc-for>
+</div>
+<span style="font-size:12px;color:var(--color-neutral-600)">{{ panelHint }}</span>
+</div>
+</sc-if>
+<sc-if value="{{ hasActive }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+<sc-for list="{{ activeChips }}" as="c" hint-placeholder-count="2"><button onClick="{{ c.clear }}" class="tag tag-accent" style="border:none;cursor:pointer;font:inherit;font-size:12px;padding:5px 10px;min-height:28px">{{ c.label }} ×</button></sc-for>
+<button onClick="{{ clearAll }}" class="btn btn-ghost" style="font-size:13px">Clear all</button>
+</div>
+</sc-if>
+</div>
+<div style="display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--color-divider);padding-bottom:8px"><h2 style="margin:0;font-size:22px">{{ filterLabel }}</h2><span style="font-size:12px;color:var(--color-neutral-600)">{{ shownCount }} recipes · per serving</span></div>
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}"><div style="padding:28px 0;display:flex;flex-direction:column;align-items:flex-start;gap:6px"><span style="font-size:15px">No recipes match these filters.</span><button onClick="{{ clearAll }}" class="btn btn-secondary">Clear all</button></div></sc-if>
+<sc-for list="{{ shownRecipes }}" as="r" hint-placeholder-count="5">
+<a href="#1b" class="blueprint" style="display:flex;flex-direction:column;gap:10px;padding:16px;text-decoration:none;color:var(--color-text)"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start"><div style="display:flex;flex-direction:column;gap:2px"><span class="card-kicker" style="color:var(--color-accent-700)">{{ r.type }}</span><span style="font-family:var(--font-heading);font-weight:600;font-size:21px;line-height:1.15">{{ r.title }}</span></div>
+<div style="flex:none;text-align:right;display:flex;flex-direction:column"><span style="font-family:var(--font-heading);font-weight:600;font-size:24px;line-height:1;color:var(--color-accent-700)">{{ r.protein }}g</span><span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-600)">protein</span></div></div>
+<div style="display:flex;gap:14px;font-size:13px;color:var(--color-neutral-700)"><span>{{ r.kcal }} kcal</span><span>{{ r.time }}</span><span>Makes {{ r.makes }}</span></div>
+<div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag tag-neutral">{{ r.source }}</span><span class="tag tag-outline" style="color:var(--color-accent-700);border-color:var(--color-accent)">{{ r.storageLabel }}</span></div>
+</a>
+</sc-for>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Recipe page · rendered markdown, CSS only</div>
+<div class="dv-card" style="width:390px">
+<div style="padding:26px 24px 40px">
+<p style="margin:0 0 30px;font-size:14px"><a href="#1a" style="text-decoration:none">← All recipes</a></p>
+<h1 style="margin:0 0 8px;font-size:42px;line-height:1">Sheet-Pan Chicken Fajitas</h1>
+<p style="margin:0 0 28px;font-size:14px;color:var(--color-neutral-700)"><em style="font-style:normal;letter-spacing:.02em">Dinner · 30 min · makes 4 servings</em></p>
+<table class="table" style="margin:0 0 36px;border-top:1px solid var(--color-divider)">
+<thead><tr><th style="padding:10px 0">Per serving</th><th style="text-align:right;padding:10px 0"></th></tr></thead>
+<tbody>
+<tr><td style="padding:10px 0">Protein</td><td style="padding:10px 0;text-align:right;font-weight:700;color:var(--color-accent-700)">48 g</td></tr>
+<tr><td style="padding:10px 0">Calories</td><td style="padding:10px 0;text-align:right;font-weight:500">460</td></tr>
+<tr><td style="padding:10px 0">Carbs</td><td style="padding:10px 0;text-align:right;font-weight:500">34 g</td></tr>
+<tr><td style="padding:10px 0">Fat</td><td style="padding:10px 0;text-align:right;font-weight:500">14 g</td></tr>
+</tbody></table>
+<h2 style="margin:0 0 12px;font-size:28px">Ingredients</h2>
+<ul style="margin:0 0 36px;padding:0;list-style:none;font-size:15px;display:flex;flex-direction:column">
+<li style="padding:9px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)">2 lb chicken breast, sliced thin</li>
+<li style="padding:9px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)">3 bell peppers, sliced</li>
+<li style="padding:9px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)">1 red onion, sliced</li>
+<li style="padding:9px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)">2 tbsp fajita seasoning</li>
+<li style="padding:9px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)">8 low-carb tortillas</li>
+<li style="padding:9px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)">Plain Greek yogurt, for topping</li>
+</ul>
+<h2 style="margin:0 0 14px;font-size:28px">Steps</h2>
+<ol style="margin:0 0 36px;padding-left:26px;font-size:15px;line-height:1.6;display:flex;flex-direction:column;gap:12px">
+<li style="padding-left:6px">Heat oven to 425°F. Line a sheet pan.</li>
+<li style="padding-left:6px">Toss chicken, peppers and onion with oil and seasoning. Spread in one layer.</li>
+<li style="padding-left:6px">Roast 20–22 minutes, stirring once.</li>
+<li style="padding-left:6px">Split into 4 containers. Warm tortillas when serving.</li>
+</ol>
+<blockquote style="margin:0;padding:4px 0 4px 16px;border-left:1px solid var(--color-accent);font-size:14px;line-height:1.6;color:var(--color-neutral-800)"><strong style="font-weight:700;color:var(--color-accent-700)">Prep tip.</strong> Greek yogurt stands in for sour cream and adds about 6 g protein.</blockquote>
+</div></div>
+<div class="dv-note">h1 · p&gt;em · table · h2 · ul · h2 · ol · blockquote — no custom markup</div>
+</div>
+
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>About page · rendered markdown, CSS only</div>
+<div class="dv-card" style="width:390px">
+<div style="padding:26px 24px 40px">
+<p style="margin:0 0 30px;font-size:14px"><a href="#1a" style="text-decoration:none">← Recipes</a></p>
+<h1 style="margin:0 0 18px;font-size:42px;line-height:1">About the plan</h1>
+<p style="margin:0 0 14px;font-size:15px;line-height:1.65;color:var(--color-neutral-800);text-wrap:pretty">Recipes here are written for two people who want to eat well without cooking every night. Most dinners make four servings, so one cook covers two days.</p>
+<p style="margin:0 0 36px;font-size:15px;line-height:1.65;color:var(--color-neutral-800);text-wrap:pretty">Every recipe lists calories and protein per serving so the planner can add up each day.</p>
+<h2 style="margin:0 0 12px;font-size:28px">Daily targets</h2>
+<table class="table" style="margin:0 0 36px;border-top:1px solid var(--color-divider)">
+<thead><tr><th style="padding:10px 0"></th><th style="text-align:right;padding:10px 0">Person A</th><th style="text-align:right;padding:10px 0">Person B</th></tr></thead>
+<tbody>
+<tr><td style="padding:10px 0">Protein</td><td style="padding:10px 0;text-align:right;font-weight:700;color:var(--color-accent-700)">170 g</td><td style="padding:10px 0;text-align:right;font-weight:700;color:var(--color-accent-700)">130 g</td></tr>
+<tr><td style="padding:10px 0">Calories</td><td style="padding:10px 0;text-align:right;font-weight:500">2,100</td><td style="padding:10px 0;text-align:right;font-weight:500">1,700</td></tr>
+<tr><td style="padding:10px 0">Fiber</td><td style="padding:10px 0;text-align:right;font-weight:500">30 g</td><td style="padding:10px 0;text-align:right;font-weight:500">25 g</td></tr>
+</tbody></table>
+<h2 style="margin:0 0 12px;font-size:28px">Rules of thumb</h2>
+<ul style="margin:0;padding:0;list-style:none;font-size:15px;display:flex;flex-direction:column">
+<li style="padding:9px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)">At least 35 g protein per meal.</li>
+<li style="padding:9px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)">One pan or one pot whenever possible.</li>
+<li style="padding:9px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)">Cook twice a week, eat leftovers the rest.</li>
+</ul>
+</div></div></div>
+
+<div class="dv-opt" id="1d"><div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Planner · This Week</div>
+<div class="dv-card" style="width:390px;position:relative">
+<div style="padding:22px 20px 36px;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;justify-content:space-between;align-items:center"><a href="#1a" style="font-size:14px;text-decoration:none">← Recipes</a><button class="btn btn-secondary" onClick="{{ toggleMenu }}" style="padding:6px 12px">Share &amp; file</button></div>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+<div class="elev-md" style="position:absolute;top:56px;right:20px;z-index:3;width:190px;background:var(--color-bg);border:1px solid var(--color-divider);display:flex;flex-direction:column;padding:4px 0">
+<button class="btn btn-ghost" style="justify-content:flex-start;padding:10px 14px;color:var(--color-text);font-family:var(--font-body);font-weight:400">Export file</button>
+<button class="btn btn-ghost" style="justify-content:flex-start;padding:10px 14px;color:var(--color-text);font-family:var(--font-body);font-weight:400">Copy share link</button>
+<button class="btn btn-ghost" style="justify-content:flex-start;padding:10px 14px;color:var(--color-text);font-family:var(--font-body);font-weight:400">Import</button>
+<button class="btn btn-ghost" style="justify-content:flex-start;padding:10px 14px;border-top:1px solid var(--color-divider);font-family:var(--font-body);font-weight:400">New week</button>
+</div>
+</sc-if>
+<header style="display:flex;flex-direction:column;gap:6px"><h1 style="margin:0;font-size:42px;line-height:1">Week Planner</h1><p style="margin:0;font-size:13px;color:var(--color-neutral-700)">Pick the week's meals, see daily totals, and get a shopping list. Saved on this device only.</p></header>
+<div class="seg" style="display:grid;grid-template-columns:1fr 1fr">
+<a href="#1d" class="seg-opt" style="justify-content:center;background:var(--color-accent);color:var(--color-bg);text-decoration:none;padding:11px">This Week</a>
+<a href="#1e" class="seg-opt" style="justify-content:center;color:var(--color-text);text-decoration:none;padding:11px">Shopping List · {{ remaining }}</a>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider)">
+<div style="padding:12px 0;display:flex;flex-direction:column"><span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-600)">Avg protein</span><span style="font-family:var(--font-heading);font-weight:600;font-size:26px;color:var(--color-accent-700)">142g</span></div>
+<div style="padding:12px 12px;display:flex;flex-direction:column;border-left:1px solid var(--color-divider)"><span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-600)">Avg kcal</span><span style="font-family:var(--font-heading);font-weight:600;font-size:26px">1,760</span></div>
+<div style="padding:12px 12px;display:flex;flex-direction:column;border-left:1px solid var(--color-divider)"><span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-neutral-600)">Cook days</span><span style="font-family:var(--font-heading);font-weight:600;font-size:26px">3</span></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:22px">
+<sc-for list="{{ days }}" as="d" hint-placeholder-count="4">
+<div class="blueprint" style="padding:14px 14px 10px;display:flex;flex-direction:column;gap:4px"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+<div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:6px"><span style="font-family:var(--font-heading);font-weight:600;font-size:20px">{{ d.name }} <span style="font-weight:400;font-size:15px;color:var(--color-neutral-600)">{{ d.date }}</span></span><span style="font-size:12px;color:var(--color-neutral-700)">{{ d.kcal }} kcal · <strong style="color:var(--color-accent-700)">{{ d.protein }}g</strong></span></div>
+<sc-for list="{{ d.meals }}" as="m" hint-placeholder-count="2">
+<div style="display:grid;grid-template-columns:62px 1fr auto;gap:8px;align-items:center;padding:8px 0;border-top:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)"><span style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--color-neutral-600)">{{ m.slot }}</span><span style="font-size:14px;line-height:1.3">{{ m.title }}</span><span class="{{ m.tagClass }}">{{ m.tag }}</span></div>
+</sc-for>
+<button onClick="{{ openAdd }}" class="btn btn-ghost" style="justify-content:flex-start;padding:10px 0;border-top:1px dashed var(--color-divider);font-size:14px;margin-top:2px">+ Add a meal</button>
+</div>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{ addOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:5;background:color-mix(in srgb,var(--color-neutral-900) 45%,transparent);display:flex;align-items:flex-end">
+<div style="width:100%;background:var(--color-bg);padding:20px 20px 26px;display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--color-divider)">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><h3 style="margin:0;font-size:26px">Add a meal</h3><span style="font-size:13px;color:var(--color-neutral-600)">Tue · Dinner</span></div>
+<div style="display:flex;flex-direction:column;gap:0;max-height:220px;overflow:auto;border-top:1px solid var(--color-divider)">
+<sc-for list="{{ pickList }}" as="p" hint-placeholder-count="4">
+<button onClick="{{ p.pick }}" style="display:grid;grid-template-columns:20px 1fr auto;gap:10px;align-items:center;padding:12px 0;min-height:44px;background:none;border:none;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent);font:inherit;color:inherit;text-align:left;cursor:pointer"><span style="{{ p.dot }}"></span><span style="font-size:15px">{{ p.title }}</span><span style="font-size:12px;color:var(--color-neutral-700)"><strong style="color:var(--color-accent-700)">{{ p.protein }}g</strong> · {{ p.kcal }}</span></button>
+</sc-for>
+</div>
+<div class="field"><label>Meals it covers</label>
+<div class="seg" style="display:grid;grid-template-columns:repeat(4,1fr);width:100%">
+<sc-for list="{{ coverOpts }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.pick }}" class="seg-opt" style="{{ c.style }}">{{ c.n }}</button></sc-for>
+</div>
+<p style="margin:8px 0 0;font-size:12px;color:var(--color-neutral-700)">Extra meals go on the following days as leftovers. <span style="color:var(--color-accent-700)">{{ coverNote }}</span></p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 2fr;gap:12px">
+<button onClick="{{ closeAdd }}" class="btn btn-secondary" style="min-height:44px">Cancel</button>
+<button onClick="{{ closeAdd }}" class="btn btn-primary blueprint" style="min-height:44px;font-size:16px"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Add</button>
+</div>
+</div></div>
+</sc-if>
+</div>
+<div class="dv-note">Tap “+ Add a meal” to open the sheet (<a class="dv-oid" href="#1f">1f</a>).</div>
+</div>
+
+<div class="dv-opt" id="1e"><div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>Planner · Shopping List</div>
+<div class="dv-card" style="width:390px">
+<div style="padding:22px 20px 36px;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;justify-content:space-between;align-items:center"><a href="#1a" style="font-size:14px;text-decoration:none">← Recipes</a><button class="btn btn-secondary" style="padding:6px 12px">Share &amp; file</button></div>
+<header style="display:flex;flex-direction:column;gap:6px"><h1 style="margin:0;font-size:42px;line-height:1">Week Planner</h1><p style="margin:0;font-size:13px;color:var(--color-neutral-700)">Totals for everything on this week's plan.</p></header>
+<div class="seg" style="display:grid;grid-template-columns:1fr 1fr">
+<a href="#1d" class="seg-opt" style="justify-content:center;color:var(--color-text);text-decoration:none;padding:11px">This Week</a>
+<a href="#1e" class="seg-opt" style="justify-content:center;background:var(--color-accent);color:var(--color-bg);text-decoration:none;padding:11px">Shopping List · {{ remaining }}</a>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--color-neutral-700)"><span>{{ doneCount }} of {{ totalCount }} in the cart</span><button onClick="{{ clearChecks }}" class="btn btn-ghost" style="font-size:13px">Clear checks</button></div>
+<div style="display:flex;flex-direction:column;gap:26px">
+<sc-for list="{{ aisles }}" as="a" hint-placeholder-count="3">
+<div style="display:flex;flex-direction:column">
+<h6 style="margin:0 0 4px;color:var(--color-accent-700);font-family:var(--font-body);font-weight:500">{{ a.name }}</h6>
+<sc-for list="{{ a.items }}" as="it" hint-placeholder-count="3">
+<button onClick="{{ it.toggle }}" style="display:grid;grid-template-columns:22px 1fr auto;gap:12px;align-items:center;min-height:48px;padding:6px 0;background:none;border:none;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent);font:inherit;color:inherit;text-align:left;cursor:pointer">
+<span style="{{ it.box }}">{{ it.mark }}</span>
+<span style="{{ it.labelStyle }}">{{ it.name }}</span>
+<span style="font-size:13px;color:var(--color-neutral-600)">{{ it.qty }}</span>
+</button>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div></div></div>
+
+<div class="dv-opt" id="1f"><div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a>Planner · Add-a-meal sheet (static)</div>
+<div class="dv-card" style="width:390px;height:720px;position:relative;background:color-mix(in srgb,var(--color-neutral-900) 45%,var(--color-bg))">
+<div style="position:absolute;left:0;right:0;bottom:0;background:var(--color-bg);padding:20px 20px 26px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><h3 style="margin:0;font-size:26px">Add a meal</h3><span style="font-size:13px;color:var(--color-neutral-600)">Tue · Dinner</span></div>
+<input class="input" placeholder="Search recipes" style="min-height:44px;background:transparent">
+<div style="display:flex;flex-direction:column;border-top:1px solid var(--color-divider)">
+<div style="display:grid;grid-template-columns:20px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)"><span style="width:16px;height:16px;border-radius:50%;background:var(--color-accent);box-shadow:inset 0 0 0 4px var(--color-bg);border:1.5px solid var(--color-accent)"></span><span style="font-size:15px">Sheet-Pan Chicken Fajitas</span><span style="font-size:12px;color:var(--color-neutral-700)"><strong style="color:var(--color-accent-700)">48g</strong> · 460</span></div>
+<div style="display:grid;grid-template-columns:20px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)"><span style="width:16px;height:16px;border-radius:50%;border:1.5px solid var(--color-divider)"></span><span style="font-size:15px">Turkey Taco Bowls</span><span style="font-size:12px;color:var(--color-neutral-700)"><strong style="color:var(--color-accent-700)">44g</strong> · 510</span></div>
+<div style="display:grid;grid-template-columns:20px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 8%,transparent)"><span style="width:16px;height:16px;border-radius:50%;border:1.5px solid var(--color-divider)"></span><span style="font-size:15px">Salmon &amp; Rice Traybake</span><span style="font-size:12px;color:var(--color-neutral-700)"><strong style="color:var(--color-accent-700)">41g</strong> · 540</span></div>
+</div>
+<div class="field"><label>Meals it covers</label>
+<div class="seg" style="display:grid;grid-template-columns:repeat(4,1fr);width:100%"><span class="seg-opt" style="justify-content:center">1</span><span class="seg-opt" style="justify-content:center">2</span><span class="seg-opt" style="justify-content:center">3</span><span class="seg-opt" style="justify-content:center;background:var(--color-accent);color:var(--color-bg)">4</span></div>
+<p style="margin:8px 0 0;font-size:12px;color:var(--color-neutral-700)">Extra meals go on the following days as leftovers. <span style="color:var(--color-accent-700)">Also fills Wed, Thu, Fri dinner.</span></p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 2fr;gap:12px"><span class="btn btn-secondary" style="min-height:44px">Cancel</span><span class="btn btn-primary blueprint" style="min-height:44px;font-size:16px"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>Add</span></div>
+</div></div>
+<div class="dv-note">Bottom sheet on phones; the same markup centers as a .dialog above 640px.</div>
+</div>
+
+</div>
+<p class="dv-next">Try next: "show desktop widths for <a class="dv-oid" href="#1a">1a</a> and <a class="dv-oid" href="#1d">1d</a>" · "write the shared markdown CSS for <a class="dv-oid" href="#1b">1b</a>" · "a warmer, greener variant"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { filter: 'All', menuOpen: false, addOpen: false, pick: 0, cover: 4, checked: { 'Chicken breast': true, 'Bell peppers': true } };
+  recipes = [
+    { type: 'Breakfast', source: 'Eggs & dairy', storage: ['Freezer-friendly','Fridge 4+ days'], title: 'Cottage Cheese Egg Bites', protein: 32, kcal: 290, time: '25 min', makes: 6 },
+    { type: 'Lunch', source: 'Chicken', storage: ['Eat fresh'], title: 'Chicken Caesar Wraps', protein: 42, kcal: 430, time: '10 min', makes: 2 },
+    { type: 'Dinner', source: 'Chicken', storage: ['Fridge 4+ days'], title: 'Sheet-Pan Chicken Fajitas', protein: 48, kcal: 460, time: '30 min', makes: 4 },
+    { type: 'Dinner', source: 'Turkey', storage: ['Freezer-friendly','Fridge 4+ days'], title: 'Turkey Taco Bowls', protein: 44, kcal: 510, time: '20 min', makes: 4 },
+    { type: 'Dinner', source: 'Beef', storage: ['Freezer-friendly','Fridge 4+ days'], title: 'Slow-Cooker Beef Chili', protein: 46, kcal: 520, time: '15 min', makes: 6 },
+    { type: 'Dinner', source: 'Fish', storage: ['Eat fresh'], title: 'Salmon & Rice Traybake', protein: 41, kcal: 540, time: '25 min', makes: 2 },
+    { type: 'Snack', source: 'Eggs & dairy', storage: ['Eat fresh'], title: 'Protein Greek Yogurt Bowl', protein: 30, kcal: 240, time: '3 min', makes: 1 },
+  ];
+  aisleData = [
+    { name: 'Produce', items: [['Bell peppers', '3'], ['Red onion', '1'], ['Romaine hearts', '2'], ['Limes', '4']] },
+    { name: 'Protein', items: [['Chicken breast', '4 lb'], ['Lean ground turkey', '2 lb'], ['Eggs', '1 dozen']] },
+    { name: 'Dairy', items: [['Plain Greek yogurt', '32 oz'], ['Cottage cheese', '16 oz']] },
+    { name: 'Pantry', items: [['Low-carb tortillas', '8'], ['Fajita seasoning', '1 packet']] },
+  ];
+  renderVals() {
+    const s = this.state;
+    const G = {
+      protein: { name: 'Protein', opts: ['Any', 'Chicken', 'Turkey', 'Beef', 'Fish', 'Eggs & dairy', 'Plant'], hint: 'Main protein source' },
+      storage: { name: 'Storage', opts: ['Any', 'Freezer-friendly', 'Fridge 4+ days', 'Eat fresh'], hint: 'How well it keeps for meal prep' },
+      sort: { name: 'Sort', opts: ['Most protein', 'Protein per kcal', 'Fewest kcal', 'Quickest', 'A–Z'], hint: 'Order of the list below' },
+    };
+    const f = s.f || { protein: 'Any', storage: 'Any', sort: 'Most protein' };
+    const setF = (k, v) => this.setState({ f: { ...f, [k]: v }, panel: null });
+    let shown = this.recipes.filter(r => (f.protein === 'Any' || r.source === f.protein) && (f.storage === 'Any' || r.storage.includes(f.storage)));
+    const key = { 'Most protein': (a, b) => b.protein - a.protein, 'Protein per kcal': (a, b) => b.protein / b.kcal - a.protein / a.kcal, 'Fewest kcal': (a, b) => a.kcal - b.kcal, 'Quickest': (a, b) => parseInt(a.time) - parseInt(b.time), 'A–Z': (a, b) => a.title.localeCompare(b.title) }[f.sort];
+    shown = [...shown].sort(key).map(r => ({ ...r, storageLabel: r.storage[0] }));
+    const cell = (k, i) => ({ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2, padding: '10px 12px', minHeight: 52, font: 'inherit', color: 'var(--color-text)', textAlign: 'left', cursor: 'pointer', border: 'none', borderLeft: i ? '1px solid var(--color-divider)' : 'none', background: s.panel === k ? 'var(--color-accent-100)' : (f[k] !== 'Any' && k !== 'sort' ? 'color-mix(in srgb, var(--color-accent) 8%, transparent)' : 'transparent'), minWidth: 0 });
+    const chip = on => ({ padding: '8px 14px', minHeight: 36, font: 'inherit', fontSize: 13, cursor: 'pointer', border: '1px solid ' + (on ? 'var(--color-accent)' : 'var(--color-divider)'), background: on ? 'var(--color-accent)' : 'transparent', color: on ? 'var(--color-bg)' : 'var(--color-text)' });
+    const lt = 'tag tag-accent', lo = 'tag tag-neutral';
+    const days = [
+      { name: 'Mon', date: 'Oct 5', kcal: '1,720', protein: 146, meals: [{ slot: 'Bkfst', title: 'Cottage Cheese Egg Bites', tag: 'Cook', tagClass: lt }, { slot: 'Lunch', title: 'Chicken Caesar Wraps', tag: 'Cook', tagClass: lt }, { slot: 'Dinner', title: 'Sheet-Pan Chicken Fajitas', tag: 'Cook', tagClass: lt }] },
+      { name: 'Tue', date: 'Oct 6', kcal: '1,640', protein: 138, meals: [{ slot: 'Bkfst', title: 'Cottage Cheese Egg Bites', tag: 'Leftover', tagClass: lo }, { slot: 'Dinner', title: 'Sheet-Pan Chicken Fajitas', tag: 'Leftover', tagClass: lo }] },
+      { name: 'Wed', date: 'Oct 7', kcal: '1,810', protein: 141, meals: [{ slot: 'Lunch', title: 'Chicken Caesar Wraps', tag: 'Cook', tagClass: lt }, { slot: 'Dinner', title: 'Turkey Taco Bowls', tag: 'Cook', tagClass: lt }] },
+    ];
+    let total = 0, done = 0;
+    const aisles = this.aisleData.map(a => ({ name: a.name, items: a.items.map(([name, qty]) => {
+      const on = !!s.checked[name]; total++; if (on) done++;
+      return { name, qty, mark: on ? '✓' : '', toggle: () => this.setState(st => ({ checked: { ...st.checked, [name]: !st.checked[name] } })),
+        box: { width: 20, height: 20, border: '1.5px solid ' + (on ? 'var(--color-accent)' : 'var(--color-neutral-400)'), background: on ? 'var(--color-accent)' : 'transparent', color: 'var(--color-bg)', fontSize: 12, display: 'grid', placeItems: 'center', lineHeight: 1 },
+        labelStyle: { fontSize: 15, color: on ? 'var(--color-neutral-500)' : 'var(--color-text)', textDecoration: on ? 'line-through' : 'none' } };
+    }) }));
+    const later = ['Wed', 'Thu', 'Fri'];
+    return {
+      groups: Object.keys(G).map((k, i) => ({ name: G[k].name, value: f[k], style: cell(k, i), open: () => this.setState({ panel: s.panel === k ? null : k }) })),
+      panelOpen: !!s.panel, isEmpty: shown.length === 0,
+      panelOpts: s.panel ? G[s.panel].opts.map(o => ({ label: o, style: chip(f[s.panel] === o), pick: () => setF(s.panel, o) })) : [],
+      panelHint: s.panel ? G[s.panel].hint : '',
+      activeChips: ['protein', 'storage'].filter(k => f[k] !== 'Any').map(k => ({ label: f[k], clear: () => setF(k, 'Any') })),
+      hasActive: f.protein !== 'Any' || f.storage !== 'Any',
+      clearAll: () => this.setState({ f: { ...f, protein: 'Any', storage: 'Any' } }),
+      filterLabel: 'Sorted by ' + f.sort.toLowerCase(),
+      shownRecipes: shown, shownCount: shown.length,
+      days, menuOpen: s.menuOpen, toggleMenu: () => this.setState({ menuOpen: !s.menuOpen }),
+      addOpen: s.addOpen, openAdd: () => this.setState({ addOpen: true }), closeAdd: () => this.setState({ addOpen: false }),
+      pickList: this.recipes.filter(r => r.type !== 'Snack').map((r, i) => ({ ...r, pick: () => this.setState({ pick: i }),
+        dot: { width: 16, height: 16, borderRadius: '50%', border: '1.5px solid ' + (s.pick === i ? 'var(--color-accent)' : 'var(--color-divider)'), background: s.pick === i ? 'var(--color-accent)' : 'transparent', boxShadow: s.pick === i ? 'inset 0 0 0 4px var(--color-bg)' : 'none' } })),
+      coverOpts: [1, 2, 3, 4].map(n => ({ n, pick: () => this.setState({ cover: n }), style: { justifyContent: 'center', minHeight: 44, border: 'none', borderLeft: n > 1 ? '1px solid var(--color-divider)' : 'none', font: 'inherit', fontSize: 14, cursor: 'pointer', background: s.cover === n ? 'var(--color-accent)' : 'transparent', color: s.cover === n ? 'var(--color-bg)' : 'var(--color-text)' } })),
+      coverNote: s.cover > 1 ? 'Also fills ' + later.slice(0, s.cover - 1).join(', ') + ' dinner.' : '',
+      aisles, totalCount: total, doneCount: done, remaining: total - done,
+      clearChecks: () => this.setState({ checked: {} }),
+    };
+  }
+}
+</script>
+</body>
+</html>

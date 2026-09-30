@@ -5,160 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meal Plan</title>
 <meta name="description" content="High-protein, lazy, meal-prep friendly recipes for two.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
-<style>
-  /*
-    This page has no recipe content of its own. It lists the .md files in the
-    repo (via the GitHub API), fetches them, and parses/renders them in the
-    browser. Edit the Markdown; this page picks it up automatically.
-  */
-  :root {
-    --bg: #faf7f2;
-    --surface: #ffffff;
-    --surface-2: #f3eee6;
-    --text: #2a2622;
-    --muted: #6f675e;
-    --border: #e6ded2;
-    --accent: #c2410c;
-    --accent-soft: #fde7da;
-    --freezer: #1d6fa5;
-    --fridge: #4d7c0f;
-    --fresh: #c2410c;
-    --pantry: #8a6d3b;
-    --shadow: 0 1px 2px rgba(42, 38, 34, .06), 0 4px 14px rgba(42, 38, 34, .05);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #1a1816;
-      --surface: #23201d;
-      --surface-2: #2c2825;
-      --text: #efe9e1;
-      --muted: #a89f94;
-      --border: #3a3531;
-      --accent: #fb8c4b;
-      --accent-soft: #3d2518;
-      --freezer: #6cb4e4;
-      --fridge: #a3d15c;
-      --fresh: #fb8c4b;
-      --pantry: #d4b074;
-      --shadow: none;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #1a1816;
-    --surface: #23201d;
-    --surface-2: #2c2825;
-    --text: #efe9e1;
-    --muted: #a89f94;
-    --border: #3a3531;
-    --accent: #fb8c4b;
-    --accent-soft: #3d2518;
-    --freezer: #6cb4e4;
-    --fridge: #a3d15c;
-    --fresh: #fb8c4b;
-    --pantry: #d4b074;
-    --shadow: none;
-  }
-
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.55 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-  }
-  a { color: var(--accent); }
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
-
-  header { padding: 32px 0 8px; }
-  header h1 {
-    font-family: Fraunces, Georgia, serif;
-    font-size: clamp(2rem, 5vw, 2.8rem);
-    line-height: 1.1;
-    margin: 0 0 6px;
-  }
-  header p { margin: 0; color: var(--muted); max-width: 60ch; }
-  .header-links { margin-top: 10px; display: flex; gap: 16px; flex-wrap: wrap; font-size: .92rem; }
-
-  .controls {
-    position: sticky; top: 0; z-index: 5;
-    background: var(--bg);
-    padding: 14px 0 12px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 20px;
-  }
-  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  .row + .row { margin-top: 10px; }
-  .tabs button, .chip, select, input[type="search"] {
-    font: inherit; font-size: .92rem; color: var(--text);
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 999px; padding: 6px 14px; cursor: pointer;
-  }
-  .tabs button[aria-pressed="true"], .chip[aria-pressed="true"] {
-    background: var(--text); color: var(--bg); border-color: var(--text);
-  }
-  input[type="search"] { flex: 1 1 220px; min-width: 0; cursor: text; border-radius: 10px; padding: 8px 12px; }
-  select { border-radius: 10px; padding: 8px 10px; }
-  .label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-right: 2px; }
-  .count { color: var(--muted); font-size: .9rem; margin-left: auto; }
-
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; padding-bottom: 48px; }
-  .card {
-    display: flex; flex-direction: column; gap: 10px;
-    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
-    padding: 16px; box-shadow: var(--shadow);
-    text-decoration: none; color: inherit;
-    transition: transform .12s ease, border-color .12s ease;
-  }
-  .card:hover { transform: translateY(-2px); border-color: var(--accent); }
-  .card .meta { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-  .card h3 { margin: 0; font-size: 1.05rem; line-height: 1.3; }
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: auto; }
-  .stat { background: var(--surface-2); border-radius: 8px; padding: 6px 8px; }
-  .stat b { display: block; font-size: 1.05rem; font-variant-numeric: tabular-nums; }
-  .stat span { font-size: .72rem; color: var(--muted); }
-  .foot { display: flex; justify-content: space-between; gap: 8px; font-size: .82rem; color: var(--muted); }
-  .tag { font-weight: 600; white-space: nowrap; }
-  .tag.freezer { color: var(--freezer); }
-  .tag.fridge { color: var(--fridge); }
-  .tag.fresh { color: var(--fresh); }
-  .tag.pantry { color: var(--pantry); }
-
-  .detail { max-width: 760px; margin: 0 auto; padding-bottom: 64px; }
-  .back { display: inline-block; margin: 8px 0 16px; font-size: .95rem; text-decoration: none; }
-  .md h1, .md h2 { font-family: Fraunces, Georgia, serif; line-height: 1.2; }
-  .md h2 { font-size: 1.9rem; margin: 0 0 12px; }
-  .md h3 { margin-top: 28px; font-size: 1.1rem; }
-  .md table { border-collapse: collapse; width: 100%; font-size: .92rem; margin: 12px 0; display: block; overflow-x: auto; }
-  .md th, .md td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; white-space: nowrap; }
-  .md th { background: var(--surface-2); }
-  .md code { background: var(--surface-2); padding: 1px 5px; border-radius: 4px; font-size: .9em; }
-  .md pre { background: var(--surface-2); padding: 12px; border-radius: 8px; overflow-x: auto; }
-  .md li { margin: 3px 0; }
-  .md hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
-  .source { font-size: .85rem; color: var(--muted); margin-top: 32px; }
-
-  .notice { background: var(--accent-soft); border-radius: 12px; padding: 14px 16px; margin: 20px 0; }
-  .empty { color: var(--muted); padding: 32px 0; text-align: center; grid-column: 1 / -1; }
-</style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>Meal Plan</h1>
-    <p>High-protein, low-to-mid calorie meals for two. Lazy cooking, meal-prep friendly, and filling for the calories.</p>
-    <div class="header-links">
-      <a href="planner.html">Week planner &amp; shopping list</a>
-      <a href="#/about">About the plan &amp; nutrition targets</a>
-      <a id="repo-link" href="#">View on GitHub</a>
-    </div>
-  </header>
-  <main id="app"><p class="empty">Loading recipes…</p></main>
+<!--
+  This page has no recipe content of its own. It lists the .md files in the
+  repo (via the GitHub API), fetches them, and parses/renders them in the
+  browser. Edit the Markdown; this page picks it up automatically.
+-->
+<div class="page stack" style="gap:28px">
+  <nav class="nav" style="padding:0;gap:18px">
+    <a class="nav-brand" href="#/" style="font-size:18px">Meal Plan</a>
+    <a href="planner.html">Planner</a>
+    <a href="#/about">About</a>
+    <a id="repo-link" href="#">GitHub</a>
+  </nav>
+  <main id="app" class="stack" style="gap:28px"><p class="muted">Loading recipes…</p></main>
 </div>
 
 <script>
@@ -168,17 +32,25 @@
   const BRANCH = "main";
   const MEAL_ORDER = ["Breakfast", "Lunch", "Dinner", "Snack"];
   const STORAGE = {
-    freezer: { icon: "🧊", label: "Freezer" },
-    fridge:  { icon: "🥡", label: "Fridge prep" },
-    fresh:   { icon: "🔥", label: "Cook fresh" },
-    pantry:  { icon: "🥫", label: "Pantry" },
+    freezer: "Freezer-friendly",
+    fridge: "Fridge prep",
+    fresh: "Cook fresh",
+    pantry: "Pantry",
   };
+  const SORTS = {
+    "Most protein": (a, b) => (b.protein_g ?? 0) - (a.protein_g ?? 0),
+    "Protein per kcal": (a, b) => density(b) - density(a),
+    "Fewest kcal": (a, b) => (a.kcal ?? 1e9) - (b.kcal ?? 1e9),
+    "Quickest": (a, b) => (a.minutes ?? 1e9) - (b.minutes ?? 1e9),
+    "A–Z": (a, b) => a.title.localeCompare(b.title),
+  };
+  const corners = `<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>`;
 
   document.getElementById("repo-link").href = `https://github.com/${REPO}`;
   const app = document.getElementById("app");
-  const state = { meal: "All", protein: "All", storage: "All", q: "", sort: "default" };
+  const state = { meal: "Any", protein: "Any", storage: "Any", sort: "Most protein", q: "", panel: null };
   let recipes = [];
-  let fileText = {};
+  const fileText = {};
 
   // ---- Helpers ------------------------------------------------------------
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -186,17 +58,16 @@
   const slug = s => s.toLowerCase().trim().replace(/[^\p{L}\p{N}\s-]/gu, "").replace(/\s/g, "-");
   const pretty = s => s.replace(/-/g, " ").replace(/^\w/, c => c.toUpperCase());
   const num = s => (s == null ? null : parseFloat(String(s).replace(/,/g, "")));
+  const density = r => (r.kcal && r.protein_g ? r.protein_g / r.kcal : 0);
   const ssGet = k => { try { return sessionStorage.getItem(k); } catch { return null; } };
   const ssSet = (k, v) => { try { sessionStorage.setItem(k, v); } catch {} };
 
   function storageKind(line) {
-    if (!line) return "pantry";
     if (line.includes("🧊")) return "freezer";
     if (line.includes("🥡")) return "fridge";
     if (line.includes("🔥")) return "fresh";
     return "pantry";
   }
-
   function field(body, name) {
     const m = body.match(new RegExp(`\\*\\*${name}:\\*\\*\\s*([^·\\n]+)`));
     return m ? m[1].trim() : "";
@@ -204,6 +75,13 @@
   function nutrient(body, name) {
     const m = body.match(new RegExp(`^\\|\\s*${name}\\s*\\|\\s*~?([\\d,.]+)`, "m"));
     return m ? num(m[1]) : null;
+  }
+  // "40 min (hands-on 15)" → 40 · "8 hr on Low" → 480 · "4–6 hr" → 240
+  function minutes(time) {
+    const hr = time.match(/(\d+)(?:–\d+)?\s*hr/);
+    if (hr) return +hr[1] * 60;
+    const min = time.match(/(\d+)\s*min/);
+    return min ? +min[1] : null;
   }
 
   // ---- Parse one .md file into recipe objects -----------------------------
@@ -214,20 +92,18 @@
       const nl = chunk.indexOf("\n");
       const title = chunk.slice(0, nl).trim();
       const body = chunk.slice(nl + 1);
-      const storageLine = (body.match(/\*\*Storage:\*\*\s*(.+)/) || [])[1] || "";
       const time = field(body, "Time");
+      const serves = field(body, "Serves");
+      const ing = (body.match(/^### Ingredients[^\n]*\n([\s\S]*?)(?=^### )/m) || [])[1] || "";
       return {
         path, meal, protein, title, anchor: slug(title),
-        serves: field(body, "Serves"),
-        time,
-        handsOn: num((time.match(/hands-on\s*(\d+)/) || [])[1]),
-        equipment: field(body, "Equipment"),
+        time: time.replace(/\s*\(.*$/, ""),
+        minutes: minutes(time),
+        makes: num((serves.match(/\d+/) || [])[0]),
         kcal: nutrient(body, "Calories"),
         protein_g: nutrient(body, "Protein"),
-        carbs: nutrient(body, "Carbs"),
-        fat: nutrient(body, "Fat"),
-        fiber: nutrient(body, "Fiber"),
-        storage: storageKind(storageLine),
+        storage: storageKind((body.match(/\*\*Storage:\*\*\s*(.+)/) || [])[1] || ""),
+        search: (title + " " + protein + " " + meal + " " + ing).toLowerCase(),
         markdown: "## " + chunk.trimEnd(),
       };
     });
@@ -239,14 +115,12 @@
     if (cached) return JSON.parse(cached);
     const res = await fetch(`https://api.github.com/repos/${REPO}/git/trees/${BRANCH}?recursive=1`);
     if (!res.ok) throw new Error(`GitHub API ${res.status}`);
-    const data = await res.json();
-    const files = data.tree
+    const files = (await res.json()).tree
       .map(t => t.path)
       .filter(p => /^[^/]+\/[^/]+\.md$/.test(p) && MEAL_ORDER.includes(p.split("/")[0]));
     ssSet("mp-tree", JSON.stringify(files));
     return files;
   }
-
   async function fetchText(path) {
     if (fileText[path]) return fileText[path];
     // Same-origin first (GitHub Pages / local server), raw GitHub as fallback.
@@ -255,133 +129,133 @@
     if (!res.ok) throw new Error(`Could not load ${path}`);
     return (fileText[path] = await res.text());
   }
-
   async function load() {
     const files = await listFiles();
     const texts = await Promise.all(files.map(fetchText));
     recipes = files.flatMap((f, i) => parseFile(f, texts[i]));
   }
 
-  // ---- Views --------------------------------------------------------------
-  function renderMarkdown(md) {
-    const html = DOMPurify.sanitize(marked.parse(md, { gfm: true }));
-    const div = document.createElement("div");
-    div.className = "md";
-    div.innerHTML = html;
-    div.querySelectorAll("h1,h2,h3").forEach(h => { h.id = slug(h.textContent); });
-    return div;
-  }
-
-  function filtered() {
-    const q = state.q.toLowerCase();
-    let list = recipes.filter(r =>
-      (state.meal === "All" || r.meal === state.meal) &&
-      (state.protein === "All" || r.protein === state.protein) &&
-      (state.storage === "All" || r.storage === state.storage) &&
-      (!q || (r.title + " " + r.equipment + " " + r.protein).toLowerCase().includes(q))
-    );
-    const by = {
-      default: (a, b) => MEAL_ORDER.indexOf(a.meal) - MEAL_ORDER.indexOf(b.meal) || a.protein.localeCompare(b.protein),
-      kcal: (a, b) => (a.kcal ?? 1e9) - (b.kcal ?? 1e9),
-      protein: (a, b) => (b.protein_g ?? 0) - (a.protein_g ?? 0),
-      density: (a, b) => density(b) - density(a),
-      handsOn: (a, b) => (a.handsOn ?? 1e9) - (b.handsOn ?? 1e9),
-    }[state.sort];
-    return list.slice().sort(by);
-  }
-  const density = r => (r.kcal && r.protein_g ? r.protein_g / r.kcal * 100 : 0);
-
-  function card(r) {
-    const s = STORAGE[r.storage];
-    return `<a class="card" href="#/${encodeURI(r.path)}/${r.anchor}">
-      <div class="meta">${esc(r.meal)} · ${esc(r.protein)}</div>
-      <h3>${esc(r.title)}</h3>
-      <div class="stats">
-        <div class="stat"><b>${r.kcal ?? "–"}</b><span>kcal</span></div>
-        <div class="stat"><b>${r.protein_g ?? "–"}g</b><span>protein</span></div>
-        <div class="stat"><b>${r.fiber ?? "–"}g</b><span>fiber</span></div>
-      </div>
-      <div class="foot">
-        <span class="tag ${r.storage}">${s.icon} ${s.label}</span>
-        <span>${r.handsOn != null ? r.handsOn + " min hands-on" : esc(r.time)}</span>
-      </div>
-    </a>`;
-  }
-
-  function chips(name, values, labelFn = v => v) {
-    return ["All", ...values].map(v =>
-      `<button class="chip" data-${name}="${esc(v)}" aria-pressed="${state[name] === v}">${esc(v === "All" ? "All" : labelFn(v))}</button>`
-    ).join("");
-  }
-
-  function renderList() {
-    const proteins = [...new Set(recipes.filter(r => state.meal === "All" || r.meal === state.meal).map(r => r.protein))].sort();
-    if (state.protein !== "All" && !proteins.includes(state.protein)) state.protein = "All";
-    const list = filtered();
-    app.innerHTML = `
-      <div class="controls">
-        <div class="row tabs">
-          ${["All", ...MEAL_ORDER].map(m => `<button data-meal="${m}" aria-pressed="${state.meal === m}">${m}</button>`).join("")}
-          <span class="count">${list.length} of ${recipes.length} recipes</span>
-        </div>
-        <div class="row"><span class="label">Protein</span>${chips("protein", proteins)}</div>
-        <div class="row"><span class="label">Storage</span>${chips("storage", Object.keys(STORAGE), k => STORAGE[k].icon + " " + STORAGE[k].label)}</div>
-        <div class="row">
-          <input type="search" id="q" placeholder="Search recipes, equipment…" value="${esc(state.q)}">
-          <select id="sort" aria-label="Sort">
-            <option value="default">Sort: meal & protein</option>
-            <option value="kcal">Lowest calories</option>
-            <option value="protein">Most protein</option>
-            <option value="density">Most protein per calorie</option>
-            <option value="handsOn">Least hands-on time</option>
-          </select>
-        </div>
-      </div>
-      <div class="grid">${list.map(card).join("") || `<p class="empty">No recipes match.</p>`}</div>`;
-    app.querySelector("#sort").value = state.sort;
-    app.querySelectorAll("[data-meal]").forEach(b => b.onclick = () => { state.meal = b.dataset.meal; renderList(); });
-    app.querySelectorAll("[data-protein]").forEach(b => b.onclick = () => { state.protein = b.dataset.protein; renderList(); });
-    app.querySelectorAll("[data-storage]").forEach(b => b.onclick = () => { state.storage = b.dataset.storage; renderList(); });
-    app.querySelector("#sort").onchange = e => { state.sort = e.target.value; renderList(); };
-    const q = app.querySelector("#q");
-    q.oninput = () => {
-      state.q = q.value;
-      app.querySelector(".grid").innerHTML = filtered().map(card).join("") || `<p class="empty">No recipes match.</p>`;
-      app.querySelector(".count").textContent = `${filtered().length} of ${recipes.length} recipes`;
+  // ---- List view ----------------------------------------------------------
+  function groups() {
+    const proteins = [...new Set(recipes.filter(r => state.meal === "Any" || r.meal === state.meal).map(r => r.protein))].sort();
+    if (state.protein !== "Any" && !proteins.includes(state.protein)) state.protein = "Any";
+    return {
+      meal: { name: "Meal", opts: ["Any", ...MEAL_ORDER], hint: "Breakfast, lunch, dinner or snack" },
+      protein: { name: "Protein", opts: ["Any", ...proteins], hint: "Main protein source" },
+      storage: { name: "Storage", opts: ["Any", ...Object.values(STORAGE)], hint: "How well it keeps for meal prep" },
+      sort: { name: "Sort", opts: Object.keys(SORTS), hint: "Order of the list below" },
     };
   }
+  function filtered() {
+    const q = state.q.toLowerCase().trim();
+    return recipes
+      .filter(r =>
+        (state.meal === "Any" || r.meal === state.meal) &&
+        (state.protein === "Any" || r.protein === state.protein) &&
+        (state.storage === "Any" || STORAGE[r.storage] === state.storage) &&
+        (!q || r.search.includes(q)))
+      .sort(SORTS[state.sort]);
+  }
+  function card(r) {
+    return `<a class="recipe-card blueprint" href="#/${encodeURI(r.path)}/${r.anchor}">${corners}
+      <div class="top">
+        <div class="stack" style="gap:2px"><span class="card-kicker" style="color:var(--color-accent-700)">${esc(r.meal)}</span><span class="title">${esc(r.title)}</span></div>
+        <div class="protein"><b>${r.protein_g ?? "–"}g</b><span class="micro">protein</span></div>
+      </div>
+      <div class="facts"><span>${r.kcal ?? "–"} kcal</span>${r.time ? `<span>${esc(r.time)}</span>` : ""}${r.makes ? `<span>Makes ${r.makes}</span>` : ""}</div>
+      <div class="tags"><span class="tag tag-neutral">${esc(r.protein)}</span><span class="tag tag-outline">${STORAGE[r.storage]}</span></div>
+    </a>`;
+  }
+  function renderResults() {
+    const list = filtered();
+    app.querySelector("#results").innerHTML = `
+      <div class="list-head"><h2>Sorted by ${esc(state.sort.toLowerCase())}</h2><span>${list.length} recipes · per serving</span></div>
+      ${list.length
+        ? `<div class="recipes">${list.map(card).join("")}</div>`
+        : `<div class="empty"><span>No recipes match these filters.</span><button class="btn btn-secondary" data-clear-all>Clear all</button></div>`}`;
+    const clear = app.querySelector("#results [data-clear-all]");
+    if (clear) clear.onclick = clearAll;
+  }
+  function clearAll() { Object.assign(state, { meal: "Any", protein: "Any", storage: "Any", q: "", panel: null }); renderList(); }
 
+  function renderList() {
+    const G = groups();
+    const active = ["meal", "protein", "storage"].filter(k => state[k] !== "Any");
+    const panel = state.panel && G[state.panel];
+    app.innerHTML = `
+      <header class="hero">
+        <span class="eyebrow">Recipes for two</span>
+        <h1>High protein.<br>Low effort.</h1>
+        <p>High-protein, low-to-mid calorie meals for two. Lazy cooking, meal-prep friendly, and filling for the calories.</p>
+      </header>
+      <div class="actions">
+        <a href="planner.html" class="btn btn-primary blueprint">${corners}Week planner &amp; shopping list<span>→</span></a>
+        <a href="#/about" class="btn btn-secondary">About the plan &amp; nutrition targets<span style="color:var(--color-neutral-600)">→</span></a>
+      </div>
+      <div class="stack" style="gap:12px">
+        <label class="visually-hidden" for="q">Search</label>
+        <input id="q" class="input" type="search" placeholder="Search recipes or ingredients" value="${esc(state.q)}" style="min-height:44px;background:transparent">
+        <div class="filters">${Object.entries(G).map(([k, g]) => `
+          <button class="filter-cell${state.panel === k ? " is-open" : ""}${k !== "sort" && state[k] !== "Any" ? " is-set" : ""}" data-panel="${k}" aria-expanded="${state.panel === k}">
+            <span class="micro">${g.name}</span><span class="val">${esc(state[k])} ▾</span>
+          </button>`).join("")}
+        </div>
+        ${panel ? `<div class="filter-panel">
+          <div class="chips">${panel.opts.map(o => `<button class="chip" data-pick="${esc(o)}" aria-pressed="${state[state.panel] === o}">${esc(o)}</button>`).join("")}</div>
+          <span style="font-size:12px;color:var(--color-neutral-600)">${panel.hint}</span>
+        </div>` : ""}
+        ${active.length ? `<div class="active-chips">
+          ${active.map(k => `<button class="tag tag-accent" data-unset="${k}">${esc(state[k])} ×</button>`).join("")}
+          <button class="btn btn-ghost" data-clear-all style="font-size:13px">Clear all</button>
+        </div>` : ""}
+      </div>
+      <section id="results" class="stack" style="gap:18px"></section>`;
+
+    app.querySelectorAll("[data-panel]").forEach(b => b.onclick = () => { state.panel = state.panel === b.dataset.panel ? null : b.dataset.panel; renderList(); });
+    app.querySelectorAll("[data-pick]").forEach(b => b.onclick = () => { state[state.panel] = b.dataset.pick; state.panel = null; renderList(); });
+    app.querySelectorAll("[data-unset]").forEach(b => b.onclick = () => { state[b.dataset.unset] = "Any"; renderList(); });
+    app.querySelectorAll(".active-chips [data-clear-all]").forEach(b => b.onclick = clearAll);
+    const q = app.querySelector("#q");
+    q.oninput = () => { state.q = q.value; renderResults(); };
+    renderResults();
+  }
+
+  // ---- Document view (a recipe, or the README) ----------------------------
   async function renderDoc(path, anchor) {
-    app.innerHTML = `<div class="detail"><a class="back" href="#/">← All recipes</a><p class="empty">Loading…</p></div>`;
+    const isRecipe = path !== "README.md";
+    app.innerHTML = `<div class="page-narrow" style="width:100%"><p style="margin:0 0 30px"><a class="back" href="#/">← ${isRecipe ? "All recipes" : "Recipes"}</a></p><p class="muted">Loading…</p></div>`;
     const text = await fetchText(path);
     const r = anchor && recipes.find(x => x.path === path && x.anchor === anchor);
-    const detail = app.querySelector(".detail");
-    detail.querySelector(".empty").remove();
-    detail.appendChild(renderMarkdown(r ? r.markdown : text));
-    const src = document.createElement("p");
-    src.className = "source";
-    src.innerHTML = `Source: <a href="https://github.com/${REPO}/blob/${BRANCH}/${encodeURI(path)}${r ? "#" + r.anchor : ""}">${esc(path)}</a>`;
-    detail.appendChild(src);
+    const wrap = app.firstElementChild;
+    wrap.lastElementChild.remove();
+    const md = document.createElement("article");
+    md.className = "md" + (isRecipe ? " recipe" : "");
+    md.innerHTML = DOMPurify.sanitize(marked.parse(r ? r.markdown : text, { gfm: true }));
+    md.querySelectorAll("h1,h2,h3").forEach(h => { h.id = slug(h.textContent); });
     // In-file index links (#anchor) should open that recipe, not jump the page.
-    detail.querySelectorAll('a[href^="#"]:not(.back)').forEach(a => {
+    md.querySelectorAll('a[href^="#"]').forEach(a => {
       const id = a.getAttribute("href").slice(1);
       if (id && !id.startsWith("/")) a.setAttribute("href", `#/${path}/${id}`);
     });
+    wrap.appendChild(md);
+    const src = document.createElement("p");
+    src.className = "source";
+    src.innerHTML = `Source: <a href="https://github.com/${REPO}/blob/${BRANCH}/${encodeURI(path)}${r ? "#" + r.anchor : ""}">${esc(path)}</a>`;
+    wrap.appendChild(src);
     window.scrollTo(0, 0);
   }
 
   async function route() {
     const h = decodeURI(location.hash.replace(/^#\/?/, ""));
     try {
-      if (h === "about") return renderDoc("README.md", null);
+      if (h === "about") return await renderDoc("README.md", null);
       const m = h.match(/^([^/]+\/[^/]+\.md)(?:\/(.+))?$/);
-      if (m) return renderDoc(m[1], m[2]);
+      if (m) return await renderDoc(m[1], m[2]);
       renderList();
     } catch (e) { showError(e); }
   }
-
   function showError(e) {
-    app.innerHTML = `<div class="notice"><b>Couldn't load the recipes.</b><br>${esc(e.message)}.
+    app.innerHTML = `<div class="notice"><b>Couldn't load the recipes.</b> ${esc(e.message)}.
       If you opened this file directly from disk, serve the folder instead (for example the VS Code "Live Server" extension),
       or view it on GitHub Pages.</div>`;
   }
