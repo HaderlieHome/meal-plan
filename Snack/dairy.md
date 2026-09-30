@@ -1,107 +1,88 @@
 # Dairy Snacks
 
-Creamy, dessert-like or dippy snacks that feel indulgent but are mostly protein.
+Grab-and-go dairy snacks. No cooking, no prep, under a minute.
 
-- [Cottage Cheese Ranch Dip with Veggies](#cottage-cheese-ranch-dip-with-veggies) — 233 kcal · 21 g protein
-- [Chocolate Protein Pudding](#chocolate-protein-pudding) — 167 kcal · 25 g protein
-- [Frozen Greek Yogurt Berry Bark](#frozen-greek-yogurt-berry-bark) — 188 kcal · 18 g protein
+- [Protein Yogurt Cup + Raspberries](#protein-yogurt-cup--raspberries) — 172 kcal · 21 g protein
+- [String Cheese + Apple](#string-cheese--apple) — 245 kcal · 18 g protein
+- [Cottage Cheese Cup + Pear](#cottage-cheese-cup--pear) — 211 kcal · 20 g protein
 
-## Cottage Cheese Ranch Dip with Veggies
+---
 
-**Serves:** 2 · **Time:** 5 min (hands-on 5) · **Equipment:** Ninja blender · **Est. cost:** $4.25 total
+## Protein Yogurt Cup + Raspberries
 
-| Per serving | Amount | % of 1,600 day | % of 2,000 day |
-| --- | --- | --- | --- |
-| Calories | 233 kcal | 15% | 12% |
-| Protein | 21 g | 18% | 14% |
-| Carbs | 30 g | 19% | 15% |
-| Fat | 4 g | 8% | 6% |
-| Fiber | 6 g | 16% | 16% |
-| Sodium | 810 mg | 35% | 35% |
-
-**Storage:** 🥡 Fridge prep — 4 days
-
-**Why it's filling:** a big pile of crunchy veg (3 cups per person) and a dip that is 21 g of protein.
-
-### Ingredients
-- 1½ cups 2% cottage cheese
-- 1 tsp dry ranch seasoning mix
-- 1 tbsp water or milk (to blend)
-- 2 cups baby carrots
-- 2 cups cucumber slices
-- 1 cup bell pepper strips
-
-### Instructions
-1. Blend the cottage cheese, ranch seasoning and water until completely smooth, 30 sec.
-2. Split into two containers and serve with the veg.
-
-### Notes
-- **Meal prep:** blend a triple batch; it keeps 4 days. Pre-cut veg into grab bags.
-- **Swaps:** everything seasoning or taco seasoning instead of ranch.
-
-## Chocolate Protein Pudding
-
-**Serves:** 2 · **Time:** 3 min (hands-on 3) · **Equipment:** none · **Est. cost:** $4.00 total
+**Serves:** 2 · **Time:** 1 min (hands-on 1) · **Equipment:** none · **Est. cost:** ~$3.50
 
 | Per serving | Amount | % of 1,600 day | % of 2,000 day |
 | --- | --- | --- | --- |
-| Calories | 167 kcal | 10% | 8% |
-| Protein | 25 g | 21% | 17% |
-| Carbs | 17 g | 11% | 8% |
-| Fat | 1 g | 2% | 1% |
-| Fiber | 6 g | 16% | 16% |
-| Sodium | 105 mg | 5% | 5% |
-
-**Storage:** 🥡 Fridge prep — 3 days
-
-**Why it's filling:** it's thick, rich and eaten slowly with a spoon, like real dessert, for under 175 kcal. The raspberries add 4 g of fiber.
-
-### Ingredients
-- 1 cup nonfat plain Greek yogurt
-- 1 scoop chocolate whey protein
-- 2 tbsp unsweetened cocoa powder
-- 1 cup raspberries (fresh or thawed frozen)
-- Splash of milk; optional pinch of salt or a few drops of zero-calorie sweetener
-
-### Instructions
-1. Stir the yogurt, protein and cocoa together, adding milk a teaspoon at a time until it's pudding-smooth.
-2. Split into two bowls and top with raspberries.
-
-### Notes
-- **Make ahead:** it gets thicker, more mousse-like, after an hour in the fridge. It keeps 3 days.
-- **Late-night pick:** a good swap for ice cream or candy cravings.
-
-## Frozen Greek Yogurt Berry Bark
-
-**Serves:** 4 (2 pieces each, from a sheet broken into 8) · **Time:** 10 min (hands-on 10) + 2 hr freeze · **Equipment:** sheet pan, parchment · **Est. cost:** $4.90 total
-
-| Per serving | Amount | % of 1,600 day | % of 2,000 day |
-| --- | --- | --- | --- |
-| Calories | 188 kcal | 12% | 9% |
-| Protein | 18 g | 15% | 12% |
-| Carbs | 21 g | 13% | 10% |
-| Fat | 4 g | 8% | 6% |
+| Calories | 172 kcal | 11% | 9% |
+| Protein | 21 g | 17% | 14% |
+| Carbs | 16 g | 10% | 8% |
+| Fat | 3.4 g | 6% | 5% |
 | Fiber | 4 g | 11% | 11% |
-| Sodium | 70 mg | 3% | 3% |
+| Sodium | 76 mg | 3% | 3% |
 
-**Storage:** 🧊 Freezer-friendly — 1 month
+**Storage:** 🥡 Fridge — sealed cups keep until the date on the lid.
 
-**Why it's filling:** frozen means you eat it slowly, and it scratches the ice-cream itch with 18 g of protein.
+**Why it's filling:** 20 g of protein in one cup, and raspberries are one of the highest-fiber fruits.
 
-### Ingredients
-- 2 cups nonfat plain Greek yogurt
-- 1 scoop vanilla whey protein
-- 1 tbsp honey
-- 1½ cups mixed berries (fresh, or frozen and chopped)
-- 2 tbsp mini dark chocolate chips
-- 1 tbsp chia seeds
-- 2 tbsp sliced almonds
+### Ingredients (for two)
+- 2 Oikos Pro yogurt cups (5.3 oz, any flavor)
+- 1 cup raspberries (fresh, or frozen and thawed)
 
 ### Instructions
-1. Stir the yogurt, protein and honey together until smooth.
-2. Spread about ½ inch thick on a parchment-lined sheet pan.
-3. Scatter the berries, chocolate chips, chia and almonds over the top and press them in lightly.
-4. Freeze 2+ hours until firm, then break into 8 pieces.
+1. Open the cup, dump raspberries on top, eat.
 
 ### Notes
-- **Storage:** freezer bag, up to 1 month. Let it sit 3–5 min before eating so it's easier to bite.
+- Swap: any 15–20 g protein yogurt cup (Ratio, Two Good, Chobani Protein).
+
+---
+
+## String Cheese + Apple
+
+**Serves:** 2 · **Time:** 1 min (hands-on 1) · **Equipment:** none · **Est. cost:** ~$2.50
+
+| Per serving | Amount | % of 1,600 day | % of 2,000 day |
+| --- | --- | --- | --- |
+| Calories | 245 kcal | 15% | 12% |
+| Protein | 18 g | 15% | 12% |
+| Carbs | 28 g | 18% | 14% |
+| Fat | 7.8 g | 15% | 12% |
+| Fiber | 4.4 g | 12% | 12% |
+| Sodium | 542 mg | 24% | 24% |
+
+**Storage:** 🥡 Fridge — string cheese keeps weeks sealed; apples keep a week or more.
+
+**Why it's filling:** Chewy protein plus a crunchy, high-fiber apple takes a while to eat.
+
+### Ingredients (for two)
+- 6 light string cheese sticks
+- 2 apples
+
+### Instructions
+1. Grab 3 sticks and an apple each.
+
+---
+
+## Cottage Cheese Cup + Pear
+
+**Serves:** 2 · **Time:** 1 min (hands-on 1) · **Equipment:** none · **Est. cost:** ~$4
+
+| Per serving | Amount | % of 1,600 day | % of 2,000 day |
+| --- | --- | --- | --- |
+| Calories | 211 kcal | 13% | 11% |
+| Protein | 20 g | 16% | 13% |
+| Carbs | 31 g | 19% | 16% |
+| Fat | 2.7 g | 5% | 4% |
+| Fiber | 5.5 g | 14% | 14% |
+| Sodium | 352 mg | 15% | 15% |
+
+**Storage:** 🥡 Fridge — sealed cups keep until the date on the lid.
+
+**Why it's filling:** Cottage cheese is slow-digesting protein, and a pear adds 5+ g of fiber.
+
+### Ingredients (for two)
+- 2 single-serve cottage cheese cups (Good Culture 2%, 5.3 oz)
+- 2 pears (or apples)
+
+### Instructions
+1. Eat the cup, eat the pear. Or slice the pear into the cup.

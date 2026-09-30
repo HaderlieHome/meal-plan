@@ -1,72 +1,61 @@
 # Meat Snacks
 
-Grab-and-go savory snacks with jerky and deli turkey. Zero cooking, very high protein per calorie.
+Grab-and-go meat snacks. No cooking, no prep.
 
-- [Popcorn & Jerky Combo](#popcorn--jerky-combo) — 208 kcal · 15 g protein
-- [Turkey & Swiss Pickle Roll-Ups](#turkey--swiss-pickle-roll-ups) — 243 kcal · 21 g protein
+- [Beef Stick + String Cheese + Baby Carrots](#beef-stick--string-cheese--baby-carrots) — 185 kcal · 17 g protein
+- [Turkey & Cheese Roll-Ups + Apple](#turkey--cheese-roll-ups--apple) — 225 kcal · 20 g protein
 
-## Popcorn & Jerky Combo
+---
 
-**Serves:** 2 · **Time:** 5 min (hands-on 3) · **Equipment:** microwave, brown paper lunch bag · **Est. cost:** $3.60 total
+## Beef Stick + String Cheese + Baby Carrots
 
-| Per serving | Amount | % of 1,600 day | % of 2,000 day |
-| --- | --- | --- | --- |
-| Calories | 208 kcal | 13% | 10% |
-| Protein | 15 g | 12% | 10% |
-| Carbs | 26 g | 16% | 13% |
-| Fat | 5 g | 9% | 7% |
-| Fiber | 4 g | 11% | 11% |
-| Sodium | 690 mg | 30% | 30% |
-
-**Storage:** 🔥 Make fresh — 5 min (jerky is shelf-stable)
-
-**Why it's filling:** 4 cups of popcorn is a huge bowl for about 90 kcal, and the chewy jerky adds protein.
-
-### Ingredients
-- ¼ cup popcorn kernels (makes ~8 cups popped)
-- 1 tsp olive oil (or spray)
-- 2 tbsp nutritional yeast (a cheesy flavor, plus B vitamins)
-- ⅛ tsp salt
-- 2 oz beef jerky (original or teriyaki)
-
-### Instructions
-1. Put the kernels in a brown paper bag and fold the top over twice. Microwave on high 2–3 min, stopping when the pops are 2 seconds apart.
-2. Toss the popcorn with oil, nutritional yeast and salt.
-3. Serve each person 4 cups of popcorn with 1 oz of jerky.
-
-### Notes
-- **Jerky:** check the labels. Aim for about 10+ g protein and ≤500 mg sodium per ounce. Costco's Kirkland jerky is a good bulk buy.
-- **Flavor swaps:** furikake on the popcorn for a Japanese take; chili-lime; cinnamon (skip the yeast).
-
-## Turkey & Swiss Pickle Roll-Ups
-
-**Serves:** 2 · **Time:** 5 min (hands-on 5) · **Equipment:** none · **Est. cost:** $6.20 total
+**Serves:** 2 · **Time:** 1 min (hands-on 1) · **Equipment:** none · **Est. cost:** ~$4.50
 
 | Per serving | Amount | % of 1,600 day | % of 2,000 day |
 | --- | --- | --- | --- |
-| Calories | 243 kcal | 15% | 12% |
-| Protein | 21 g | 18% | 14% |
-| Carbs | 20 g | 12% | 10% |
-| Fat | 9 g | 17% | 13% |
-| Fiber | 4 g | 11% | 11% |
-| Sodium | 970 mg | 42% | 42% |
+| Calories | 185 kcal | 12% | 9% |
+| Protein | 17 g | 14% | 11% |
+| Carbs | 9 g | 6% | 4% |
+| Fat | 8.6 g | 16% | 13% |
+| Fiber | 2.9 g | 8% | 8% |
+| Sodium | 628 mg | 27% | 27% |
 
-**Storage:** 🥡 Fridge prep — 3 days
+**Storage:** 🥫 Pantry for beef sticks (shelf-stable); string cheese and carrots in the fridge.
 
-**Why it's filling:** 21 g of protein for about 245 kcal, and the pickle and pepper crunch make it feel like a sandwich without the bread.
+**Why it's filling:** Salty, chewy and crunchy covers most snack cravings for under 200 kcal.
 
-### Ingredients
-- 6 oz lower-sodium deli turkey breast
-- 2 slices Swiss cheese (naturally low in sodium), halved
-- 2 dill pickle spears, halved lengthwise
-- 1 tsp yellow or Dijon mustard per person
-- 2 cups bell pepper strips and 1 cup baby carrots (on the side)
+### Ingredients (for two)
+- 2 beef sticks (Chomps or Costco Kirkland)
+- 2 light string cheese sticks
+- ~20 baby carrots
 
 ### Instructions
-1. Lay out the turkey slices overlapping in 4 stacks. Spread thinly with mustard and add half a slice of Swiss.
-2. Put a pickle quarter on each stack and roll it up tight. Secure with a toothpick if needed.
-3. Serve 2 roll-ups per person with the peppers and carrots.
+1. Grab one of each per person.
 
-### Notes
-- **Sodium:** deli meat and pickles are the main sources. Lower-sodium turkey is worth it.
-- **Meal prep:** rolls keep 3 days in the fridge in an airtight container.
+---
+
+## Turkey & Cheese Roll-Ups + Apple
+
+**Serves:** 2 · **Time:** 2 min (hands-on 2) · **Equipment:** none · **Est. cost:** ~$4.50
+
+| Per serving | Amount | % of 1,600 day | % of 2,000 day |
+| --- | --- | --- | --- |
+| Calories | 225 kcal | 14% | 11% |
+| Protein | 20 g | 17% | 14% |
+| Carbs | 28 g | 18% | 14% |
+| Fat | 3.8 g | 7% | 6% |
+| Fiber | 4.4 g | 12% | 12% |
+| Sodium | 682 mg | 30% | 30% |
+
+**Storage:** 🥡 Fridge — deli turkey keeps 3–5 days after opening.
+
+**Why it's filling:** A big pile of lean turkey for very few calories, with an apple for fiber and crunch.
+
+### Ingredients (for two)
+- 6 oz lower-sodium deli turkey
+- 2 light string cheese sticks
+- 2 apples
+
+### Instructions
+1. Wrap turkey slices around a string cheese stick.
+2. Eat with an apple.
