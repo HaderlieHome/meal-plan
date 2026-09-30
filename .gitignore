@@ -1,0 +1,6 @@
+# Local-only files
+.mcp-servers/
+.claude/
+.mcp.json
+.vscode/
+.DS_Store
