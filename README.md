@@ -6,7 +6,7 @@ A collection of simple, cheap, high-protein meals sized for **two adults**.
 
 - **High protein** – every meal should be built around a solid protein source.
 - **Cheap** – favor budget staples and ingredients that can be bought in bulk.
-- **Simple** – short ingredient lists, minimal prep, few dishes to clean.
+- **Simple** – two lazy guys who don't cook. Store shortcuts (jarred sauce, seasoning packets, rotisserie chicken, microwave rice, frozen fries, steam-in-bag veg), about 7 ingredients or fewer, and 5 steps or fewer. Dump it in the crock pot or throw it in the air fryer.
 - **Serves two** – all quantities are for two grown adults.
 - **Lazy + meal prep** – favor hands-off cooking (dump-and-go, set-and-forget) and recipes that batch well and reheat cleanly.
 - **Weight loss** – low-to-mid calorie, high protein, and genuinely filling.
@@ -25,26 +25,24 @@ Per-serving targets (one adult). Adjust once personal calorie needs are known.
 
 **Daily ballpark:** ~1,500–1,900 kcal, 120–160 g protein, 25–35 g fiber.
 
-**Macro shape:** protein first (~30–35% of calories), moderate complex carbs (~35–40%), fats kept modest (~25–30%) and coming mostly from fish, olive oil, nuts and seeds.
+**Macro shape:** protein first (~30–35% of calories), moderate complex carbs (~35–40%), fats kept modest (~25–30%).
 
-### Volume Eating (feels like more than it is)
+### Filling for the Calories
 
-Make each plate look and feel big for its calories:
+Real food, just portioned sensibly. No fake noodles, no riced cauliflower, no diet swaps.
 
-- **Bulk with low-calorie-density foods:** broth-based soups and stews, big piles of roasted or steamed veg, salads, zucchini, cabbage, mushrooms, spinach.
-- **Stretch the carbs:** mix riced cauliflower into rice (50/50), use spaghetti squash or zucchini noodles with half-portion pasta, and swap chips for air-popped popcorn.
-- **Lean, fluffy protein:** chicken breast, shrimp, white fish, 93%+ lean ground turkey, nonfat Greek yogurt, low-fat cottage cheese.
-- **Smart swaps:** Greek yogurt for sour cream/mayo, salsa and hot sauce over creamy sauces, air fryer over oil frying, and sauces measured rather than poured.
-- **Satiety boosters:** protein, fiber, and water content keep you full. Aim for all three in every meal.
+- **Protein first:** a big portion of lean meat (chicken, 93% lean ground turkey or beef, pork loin, lean steak) is the most filling thing on the plate.
+- **Normal veggies on the side:** broccoli, carrots, corn, peppers, onions, lettuce, cabbage and potatoes. Frozen steam-in-bag veg counts.
+- **Normal starch, sensible portion:** regular rice, pasta, potatoes and bread, about ¾ cup cooked rice or pasta per plate.
+- **Easy calorie cuts:** Greek yogurt in place of sour cream, measure the sauce instead of pouring, and use the air fryer instead of frying in oil.
 
 ### Mental-Health-Friendly Ingredients
 
 Build in regularly:
 
-- **Omega-3s:** salmon, sardines, canned tuna, chia, flax, walnuts (fish 2x/week).
-- **Gut health:** Greek yogurt, kefir, kimchi, sauerkraut, beans, lentils, oats.
+- **Gut health:** Greek yogurt, beans and oats.
 - **Steady blood sugar:** pair carbs with protein and fiber, and favor whole grains, beans and sweet potatoes over refined carbs.
-- **Key micronutrients:** leafy greens (folate, magnesium), pumpkin seeds (magnesium, zinc), berries (antioxidants), lean beef in moderation (iron, B12).
+- **Key micronutrients:** leafy greens (folate, magnesium), berries (antioxidants), lean beef in moderation (iron, B12).
 
 ## Taste Profile
 
@@ -59,16 +57,14 @@ Build in regularly:
 Starches are loved, so they stay in the rotation, made smarter rather than banned:
 
 - **Potatoes are an ally:** boiled or baked potatoes rank among the most filling foods per calorie. Hold back on the toppings and use Greek yogurt in place of sour cream.
-- **Portion and stretch:** use about ¾ cup cooked rice or pasta per serving, bulked out with veg (cauliflower rice 50/50, zucchini or spaghetti squash mixed into pasta).
-- **Higher-protein swaps:** protein pasta (e.g. Barilla Protein+), chickpea or lentil pasta, and shirataki/konjac noodles mixed with regular noodles for ramen or stir-fries.
+- **Portion, don't replace:** use real rice, pasta, noodles and bread, about ¾ cup cooked rice or pasta per serving, with a normal vegetable on the side.
 - **Cook ahead, cool, reheat:** cooling cooked rice, pasta and potatoes overnight creates resistant starch (gentler on blood sugar). This is a natural fit for meal prep.
 - **Protein and fiber first:** every starch comes paired with a solid protein and a vegetable, never on its own.
 
 ## Prep Rules
 
 - **Storage tag on every recipe:** 🧊 **Freezer-friendly** (keeps 2–3 months frozen) · 🥡 **Fridge prep** (keeps 3–4 days) · 🔥 **Cook fresh** (eat the same day, no leftovers).
-- **Seafood is always 🔥 cook fresh.** It's never batched or kept as leftovers. The only exception is canned or pouch tuna or salmon, opened the same day it's eaten.
-- **Dinners:** batch to 4–6 servings when the dish reheats well (stews, curries, shredded or ground meat). Crispy dishes and seafood stay at 2 servings. Some stovetop cooking is fine.
+- **Dinners:** batch to 4–6 servings when the dish reheats well (stews, curries, shredded or ground meat). Crispy dishes stay at 2 servings. Some stovetop cooking is fine.
 - **Lunches:** keep them simple, at the level of a sandwich or wrap with fruit and chips or a crunchy side. Aim for 10 minutes of assembly or less, with no cooking. Leftover dinners count as lunch too.
 
 ## Equipment
@@ -77,8 +73,8 @@ Regular kitchen tools are available, plus these appliances. Prefer them over sto
 
 | Appliance | Specs | Best for |
 | --- | --- | --- |
-| Ninja Air Fryer (AF141) | 5 qt, 400°F max; air fry, roast, reheat, dehydrate | Crispy proteins (chicken thighs, tofu), roasted veg, reheating leftovers without sogginess |
-| Instant Pot Duo | 6 qt; pressure cook, slow cook, rice, steam, sauté, yogurt | Fast shredded meats, dried beans/lentils without soaking, chili/stews, homemade Greek yogurt |
+| Ninja Air Fryer (AF141) | 5 qt, 400°F max; air fry, roast, reheat, dehydrate | Crispy proteins (chicken thighs, pork), roasted veg, reheating leftovers without sogginess |
+| Instant Pot Duo | 6 qt; pressure cook, slow cook, rice, steam, sauté, yogurt | Fast shredded meats, dried beans without soaking, chili/stews, homemade Greek yogurt |
 | BLACK+DECKER Rice Cooker | 6 cups cooked, steaming basket | Rice/grains with protein or veg steaming on top |
 | Crock Pot | Size TBD | All-day dump-and-go meals, big batches |
 | Ninja Blender | — | Protein shakes, smoothies, sauces, blended soups |
@@ -102,10 +98,10 @@ Meals are organized by meal time, then by main protein. Each file holds several 
 
 ```
 Meals/
-├── Breakfast/   dairy.md, protein-powder.md, ...
-├── Lunch/       chicken.md, seafood.md, ...
-├── Dinner/      chicken.md, beef.md, pork.md, seafood.md, turkey.md, plant-based.md
-└── Snack/       dairy.md, protein-powder.md, ...
+├── Breakfast/   dairy.md, meat.md
+├── Lunch/       chicken.md, turkey.md, beef.md, pork.md
+├── Dinner/      chicken.md, beef.md, pork.md, turkey.md
+└── Snack/       dairy.md, meat.md, plant-based.md, shakes-and-bars.md
 ```
 
 ## Daily Value Reference (Adult Man)
@@ -161,9 +157,6 @@ Cheap, egg-free protein staples to build meals around:
 
 - Chicken thighs / breasts
 - Ground turkey or ground beef
-- Canned tuna / salmon
 - Greek yogurt and cottage cheese
-- Beans, lentils, and chickpeas
-- Tofu and tempeh
-- Protein powder (for breakfast and snacks)
+- Canned beans (in chili)
 - Cheese and milk

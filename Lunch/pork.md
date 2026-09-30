@@ -1,45 +1,37 @@
 # Pork Lunches
 
-A classic ham and Swiss sandwich, rounded out with a protein side.
+A plain ham and Swiss sandwich.
 
-**Leftover dinner counts.** Leftover carnitas bowls or egg roll in a bowl make a lunch too.
+**Leftover dinner counts.** Any leftover dinner in a container is lunch.
 
-- [Ham & Swiss Sandwich + Apple + Popcorn](#ham--swiss-sandwich--apple--popcorn) — 545 kcal · 43 g protein
+- [Ham & Swiss Sandwich](#ham--swiss-sandwich) — 464 kcal · 37 g protein
 
 ---
 
-## Ham & Swiss Sandwich + Apple + Popcorn
+## Ham & Swiss Sandwich
 
-**Serves:** 2 (1 lunch for two) · **Time:** 5 min (hands-on 5) · **Equipment:** none · **Est. cost:** ~$11 total
+**Serves:** 2 · **Time:** 3 min · **Equipment:** none · **Est. cost:** ~$9
 
 | Per serving | Amount | % of 1,600 day | % of 2,000 day |
 | --- | --- | --- | --- |
-| Calories | 545 kcal | 34% | 27% |
-| Protein | 43 g | 36% | 29% |
-| Carbs | 65 g | 41% | 32% |
-| Fat | 16 g | 30% | 24% |
-| Fiber | 12 g | 32% | 32% |
-| Sodium | 1,290 mg | 56% | 56% |
+| Calories | 464 kcal | 29% | 23% |
+| Protein | 36.5 g | 30% | 24% |
+| Carbs | 54 g | 34% | 27% |
+| Fat | 12.5 g | 24% | 19% |
+| Fiber | 8.5 g | 23% | 23% |
+| Sodium | 1,338 mg | 58% | 58% |
 
-**Storage:** 🥡 Fridge prep. Build it the night before or the morning of. Deli ham keeps 3–5 days after opening.
+**Storage:** 🥡 Fridge — make it the night before or the morning of.
 
-**Why it's filling:** a stacked sandwich with a vanilla yogurt cup, a whole apple and a big bag of popcorn.
+**Why it's filling:** 5 oz of ham per sandwich, plus an apple.
 
-### Ingredients
-- 4 slices Dave's Killer Bread Thin-Sliced 21 Whole Grains (or rye)
-- 6½ oz deli ham (e.g. Oscar Mayer Deli Fresh Black Forest)
-- 2 slices Swiss cheese (¾ oz each)
-- 2 tsp Dijon or spicy brown mustard
-- 2 romaine leaves
-- 2 Oikos Triple Zero vanilla Greek yogurt cups (5.3 oz each)
-- 2 medium apples
-- 1 oz SkinnyPop popcorn (½ oz each)
+### Ingredients (for two)
+- 4 slices whole wheat bread
+- 10 oz deli ham (lower-sodium)
+- 2 slices Swiss cheese
+- Mustard
+- 2 apples
 
 ### Instructions
-1. Spread the mustard on the bread, then layer the ham, Swiss and lettuce.
-2. Cut and wrap.
-3. Pack each with a yogurt cup, an apple and popcorn.
-
-### Notes
-- A pickle spear on the side is classic, but it adds about 275 mg sodium. That's not counted in the table.
-- Deli ham is salty (about 1,000 mg per 3½ oz). A lower-sodium ham, or half ham and half leftover pork tenderloin, helps.
+1. Stack ham and cheese on the bread with mustard.
+2. Pack with an apple.

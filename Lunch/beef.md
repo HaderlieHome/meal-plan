@@ -1,45 +1,37 @@
 # Beef Lunches
 
-A deli roast beef sandwich with a kick, assembled in 5 minutes.
+A plain roast beef sandwich.
 
-**Leftover dinner counts.** Leftover Bolognese, beef and broccoli, or sliced steak on a salad all make a lunch.
+**Leftover dinner counts.** Any leftover dinner in a container is lunch.
 
-- [Roast Beef & Horseradish Sandwich](#roast-beef--horseradish-sandwich) — 493 kcal · 45 g protein
+- [Roast Beef & Cheddar Sandwich](#roast-beef--cheddar-sandwich) — 490 kcal · 38 g protein
 
 ---
 
-## Roast Beef & Horseradish Sandwich
+## Roast Beef & Cheddar Sandwich
 
-**Serves:** 2 (1 lunch for two) · **Time:** 6 min (hands-on 6) · **Equipment:** none · **Est. cost:** ~$12 total
+**Serves:** 2 · **Time:** 3 min · **Equipment:** none · **Est. cost:** ~$10
 
 | Per serving | Amount | % of 1,600 day | % of 2,000 day |
 | --- | --- | --- | --- |
-| Calories | 493 kcal | 31% | 25% |
-| Protein | 45 g | 38% | 30% |
-| Carbs | 62 g | 39% | 31% |
-| Fat | 10 g | 19% | 15% |
-| Fiber | 12 g | 32% | 32% |
-| Sodium | 1,360 mg | 59% | 59% |
+| Calories | 490 kcal | 31% | 24% |
+| Protein | 38 g | 32% | 25% |
+| Carbs | 51 g | 32% | 25% |
+| Fat | 15 g | 28% | 22% |
+| Fiber | 8.5 g | 23% | 23% |
+| Sodium | 1,293 mg | 56% | 56% |
 
-**Storage:** 🥡 Fridge prep. Build it the night before or the morning of. Deli roast beef keeps 3–5 days after opening.
+**Storage:** 🥡 Fridge — make it the night before or the morning of.
 
-**Why it's filling:** lean roast beef with a Greek-yogurt horseradish sauce, plus a vanilla yogurt cup, an orange and popcorn.
+**Why it's filling:** 5 oz of roast beef per sandwich, plus an apple.
 
-### Ingredients
-- 4 slices Dave's Killer Bread Thin-Sliced 21 Whole Grains (or rye)
-- 7 oz deli roast beef, thin sliced
-- 1 Tbsp prepared horseradish + 3 Tbsp plain nonfat Greek yogurt
-- 2 romaine leaves
-- 1 small tomato, sliced
-- 2 Oikos Triple Zero vanilla Greek yogurt cups (5.3 oz each)
-- 2 navel oranges
-- 1 oz SkinnyPop popcorn (½ oz each)
+### Ingredients (for two)
+- 4 slices whole wheat bread
+- 10 oz deli roast beef
+- 2 slices cheddar
+- Mustard (or horseradish sauce from the jar)
+- 2 apples
 
 ### Instructions
-1. Stir the horseradish into the Greek yogurt, then spread it on the bread.
-2. Layer the roast beef, lettuce and tomato, then cut and wrap.
-3. Pack each with a yogurt cup, an orange and popcorn.
-
-### Notes
-- Deli roast beef is the salty part (about 1,050 mg per 3½ oz). Ask the deli counter for low-sodium roast beef, or use leftover sliced steak from Steak Night.
-- Add a pinch of black pepper and a few thin red onion slices for more bite.
+1. Stack roast beef and cheese on the bread with mustard.
+2. Pack with an apple.

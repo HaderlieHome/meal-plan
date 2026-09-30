@@ -1,212 +1,251 @@
 # Beef Dinners
 
-Lean beef dinners: comfort classics and Japanese/Chinese-style bowls, built around 93% lean ground beef and Costco sirloin or flank.
+Normal beef dinners with store-bought shortcuts: taco packets, jarred sauce, microwave rice and frozen fries.
 
-- [Instant Pot Bolognese with Hidden Veg](#instant-pot-bolognese-with-hidden-veg): 530 kcal · 49 g protein
-- [Instant Pot Beef and Broccoli](#instant-pot-beef-and-broccoli): 540 kcal · 47 g protein
-- [Gyudon (Japanese Beef and Onion Rice Bowl)](#gyudon-japanese-beef-and-onion-rice-bowl): 500 kcal · 47 g protein
-- [Air Fryer Burger Bowls with Potato Wedges](#air-fryer-burger-bowls-with-potato-wedges): 590 kcal · 49 g protein
-- [Costco Steak Night](#costco-steak-night): 480 kcal · 50 g protein
+- [Beef Tacos](#beef-tacos) — 583 kcal · 41 g protein
+- [Spaghetti & Meat Sauce](#spaghetti--meat-sauce) — 592 kcal · 42 g protein
+- [Air Fryer Burgers & Fries](#air-fryer-burgers--fries) — 597 kcal · 43 g protein
+- [Costco Steak & Baked Potato](#costco-steak--baked-potato) — 516 kcal · 49 g protein
+- [Crock Pot Chili](#crock-pot-chili) — 562 kcal · 44 g protein
+- [Beef Bulgogi Rice Bowls](#beef-bulgogi-rice-bowls) — 589 kcal · 43 g protein
+- [Beef & Broccoli](#beef--broccoli) — 567 kcal · 49 g protein
 
 ---
 
-## Instant Pot Bolognese with Hidden Veg
+## Beef Tacos
 
-**Serves:** 6 (3 dinners for two; Sunday batch for Mon/Tue) · **Time:** 50 min (hands-on 20) · **Equipment:** Instant Pot, Ninja Blender · **Est. cost:** ~$25 total (~$4.20/serving)
+**Serves:** 4 (2 meals for two) · **Time:** 20 min (hands-on 15) · **Equipment:** Skillet · **Est. cost:** ~$18 total
 
 | Per serving | Amount | % of 1,600 day | % of 2,000 day |
 | --- | --- | --- | --- |
-| Calories | 530 kcal | 33% | 27% |
+| Calories | 583 kcal | 36% | 29% |
+| Protein | 41 g | 34% | 27% |
+| Carbs | 53 g | 33% | 27% |
+| Fat | 22 g | 41% | 32% |
+| Fiber | 5 g | 12% | 12% |
+| Sodium | 1,621 mg | 70% | 70% |
+
+**Storage:** 🧊 Freezer-friendly — taco meat keeps 4 days in the fridge or 3 months frozen. Keep the toppings separate.
+
+**Why it's filling:** A big pile of seasoned beef in two tacos each, with cheese and crunchy lettuce.
+
+### Ingredients
+- 1¼ lb 93% lean ground beef
+- 1 packet taco seasoning (plus the water it calls for)
+- 8 flour tortillas (8-inch soft taco size)
+- 1 bag shredded lettuce
+- ½ cup shredded Mexican cheese
+- Jar of salsa
+
+### Instructions
+1. Brown the beef in a skillet until no pink remains (160°F), about 8 min. Drain.
+2. Stir in the taco seasoning and water. Simmer 3–4 min.
+3. Warm the tortillas in the microwave for 20 sec.
+4. Fill each tortilla with beef, lettuce, cheese and salsa.
+
+### Notes
+- Night two: microwave the leftover meat 1–2 min and build the tacos fresh.
+- Ground turkey works the same way.
+
+---
+
+## Spaghetti & Meat Sauce
+
+**Serves:** 4 (2 meals for two) · **Time:** 25 min (hands-on 15) · **Equipment:** Pot, skillet · **Est. cost:** ~$18 total
+
+| Per serving | Amount | % of 1,600 day | % of 2,000 day |
+| --- | --- | --- | --- |
+| Calories | 592 kcal | 37% | 30% |
+| Protein | 42 g | 35% | 28% |
+| Carbs | 60 g | 37% | 30% |
+| Fat | 19 g | 36% | 29% |
+| Fiber | 6 g | 17% | 17% |
+| Sodium | 1,133 mg | 49% | 49% |
+
+**Storage:** 🧊 Freezer-friendly — meat sauce keeps 4 days in the fridge or 3 months frozen. Cook pasta fresh if you can.
+
+**Why it's filling:** A full plate of spaghetti and meat sauce with a side salad.
+
+### Ingredients
+- 1¼ lb 93% lean ground beef
+- 1 jar (24 oz) marinara sauce
+- 8 oz spaghetti
+- Grated parmesan (the shaker kind)
+- 1 bag garden salad
+- Italian dressing
+
+### Instructions
+1. Boil the spaghetti per the box.
+2. Meanwhile, brown the beef in a skillet until no pink remains (160°F). Drain.
+3. Pour in the jar of sauce and simmer 5 min.
+4. Drain the pasta, top with sauce and parmesan. Serve with salad and 1 tbsp dressing each.
+
+---
+
+## Air Fryer Burgers & Fries
+
+**Serves:** 2 · **Time:** 30 min (hands-on 5) · **Equipment:** Air Fryer · **Est. cost:** ~$9 total
+
+| Per serving | Amount | % of 1,600 day | % of 2,000 day |
+| --- | --- | --- | --- |
+| Calories | 597 kcal | 37% | 30% |
+| Protein | 43 g | 36% | 28% |
+| Carbs | 61 g | 38% | 31% |
+| Fat | 19 g | 35% | 28% |
+| Fiber | 3 g | 8% | 8% |
+| Sodium | 1,067 mg | 46% | 46% |
+
+**Storage:** 🔥 Cook fresh — best eaten right away.
+
+**Why it's filling:** A 6 oz burger and a side of fries, a real burger night that still fits the plan.
+
+### Ingredients
+- ¾ lb 93% lean ground beef (or 90%)
+- 2 hamburger buns
+- Frozen fries (about 6 oz)
+- Ketchup and mustard
+- Salt and pepper
+
+### Instructions
+1. Air fry the fries at 400°F for 15 min, shaking once. Move them to a plate.
+2. Shape the beef into 2 patties about ¾ inch thick. Salt and pepper both sides.
+3. Air fry the patties at 375°F for 10–12 min, flipping halfway, until 160°F inside.
+4. Put the fries back in for 2 min to reheat. Build the burgers.
+
+### Notes
+- A slice of American cheese adds about 60 kcal.
+
+---
+
+## Costco Steak & Baked Potato
+
+**Serves:** 2 · **Time:** 25 min (hands-on 5) · **Equipment:** Air Fryer, microwave · **Est. cost:** ~$15 total
+
+| Per serving | Amount | % of 1,600 day | % of 2,000 day |
+| --- | --- | --- | --- |
+| Calories | 516 kcal | 32% | 26% |
 | Protein | 49 g | 41% | 33% |
-| Carbs | 58 g | 36% | 29% |
-| Fat | 14 g | 26% | 20% |
+| Carbs | 47 g | 29% | 23% |
+| Fat | 16 g | 31% | 24% |
+| Fiber | 9 g | 23% | 23% |
+| Sodium | 491 mg | 21% | 21% |
+
+**Storage:** 🔥 Cook fresh — leftover steak keeps 3 days in the fridge.
+
+**Why it's filling:** A steakhouse plate: steak, a loaded baked potato and broccoli.
+
+### Ingredients
+- 2 sirloin steaks (6 oz each, about 1 inch thick)
+- Montreal steak seasoning
+- 2 russet potatoes
+- Butter and sour cream
+- 1 bag (12 oz) steam-in-bag broccoli
+
+### Instructions
+1. Poke the potatoes with a fork. Microwave 8–10 min, flipping halfway, until soft.
+2. Season the steaks. Air fry at 400°F for 10–12 min, flipping halfway, until 145°F inside. Rest 5 min.
+3. Microwave the broccoli bag per the package.
+4. Top each potato with ½ tbsp butter and 2 tbsp sour cream.
+
+---
+
+## Crock Pot Chili
+
+**Serves:** 6 (3 meals for two) · **Time:** 6–8 hr on Low (hands-on 15) · **Equipment:** Crock Pot, skillet · **Est. cost:** ~$25 total
+
+| Per serving | Amount | % of 1,600 day | % of 2,000 day |
+| --- | --- | --- | --- |
+| Calories | 562 kcal | 35% | 28% |
+| Protein | 44 g | 36% | 29% |
+| Carbs | 40 g | 25% | 20% |
+| Fat | 23 g | 44% | 34% |
 | Fiber | 9 g | 24% | 24% |
-| Sodium | 850 mg | 37% | 37% |
+| Sodium | 1,218 mg | 53% | 53% |
 
-**Storage:** 🧊 Freezer-friendly (sauce only; cook pasta fresh)
+**Storage:** 🧊 Freezer-friendly — keeps 4 days in the fridge or 3 months frozen.
 
-**Why it's filling:** a pound of vegetables disappears into the sauce, and protein pasta gives each 2 oz portion about twice the protein of regular pasta.
+**Why it's filling:** A thick bowl of beef and beans with cheese and tortilla chips on top.
 
 ### Ingredients
 - 2 lb 93% lean ground beef
-- 1 large onion, 2 carrots, 2 celery stalks, 8 oz white mushrooms, 2 medium zucchini (roughly chopped, no need to be neat)
-- 4 cloves garlic
-- 1 can (28 oz) crushed tomatoes
-- 2 Tbsp tomato paste
-- 1 tsp salt, 1 Tbsp Italian seasoning, ½ tsp red pepper flakes (optional)
-- 12 oz Barilla Protein+ penne or rigatoni (2 oz dry per serving)
-- 6 Tbsp grated parmesan (1 Tbsp per serving)
+- 2 cans (15 oz) kidney beans, drained
+- 2 cans (14.5 oz) diced tomatoes (don't drain)
+- 1 packet chili seasoning
+- 1 onion, chopped
+- Shredded cheddar
+- Tortilla chips
 
 ### Instructions
-1. Pulse the onion, carrots, celery, mushrooms, zucchini and garlic in the Ninja blender until finely minced. Do it in 2 batches and don't purée it.
-2. Instant Pot on **Sauté**: brown the beef, about 6 minutes. Add the minced veg, salt and seasoning and cook 5 minutes, scraping the bottom clean.
-3. Stir in the tomato paste. Pour the crushed tomatoes on top and **don't stir**, which prevents the "burn" warning.
-4. Seal and **Pressure Cook High 15 min**, then natural release for 10 minutes. Stir.
-5. Cook 4 oz of pasta per night (2 servings) and toss with a third of the sauce. Top each bowl with 1 Tbsp parmesan.
+1. Brown the beef in a skillet until no pink remains (160°F). Drain.
+2. Dump the beef, beans, tomatoes, seasoning packet and onion into the crock pot. Stir.
+3. Cook on Low 6–8 hr (or High 3–4 hr).
+4. Serve each bowl with 2 tbsp cheese and a handful (1 oz) of chips.
 
 ### Notes
-- Cook pasta fresh each night so it isn't mushy. Or cook it all Sunday, cool it overnight (resistant starch) and reheat it in the sauce.
-- Swap: chickpea pasta for more fiber, or spaghetti squash instead of pasta to save about 150 kcal/serving.
-- Storage: sauce keeps 4 days in the fridge or 3 months frozen. Reheat in the microwave with a splash of water.
-- Freezing: portion the sauce into 2-serving containers or flat zip bags (flat bags thaw fastest). Thaw overnight in the fridge, or reheat from frozen in a covered pot over low heat with ¼ cup water, stirring every few minutes. Always freeze the sauce without pasta.
+- Needs a 5–6 qt crock pot. For a smaller one, halve everything.
 
 ---
 
-## Instant Pot Beef and Broccoli
+## Beef Bulgogi Rice Bowls
 
-**Serves:** 4 (2 dinners for two) · **Time:** 35 min (hands-on 15) · **Equipment:** Instant Pot, Rice Cooker · **Est. cost:** ~$22 total
+**Serves:** 4 (2 meals for two) · **Time:** 15 min (hands-on 10) · **Equipment:** Skillet, microwave · **Est. cost:** ~$24 total
 
 | Per serving | Amount | % of 1,600 day | % of 2,000 day |
 | --- | --- | --- | --- |
-| Calories | 540 kcal | 34% | 27% |
-| Protein | 47 g | 39% | 31% |
-| Carbs | 49 g | 31% | 24% |
-| Fat | 16 g | 30% | 24% |
-| Fiber | 8 g | 21% | 21% |
-| Sodium | 1,040 mg | 45% | 45% |
+| Calories | 589 kcal | 37% | 29% |
+| Protein | 43 g | 36% | 29% |
+| Carbs | 68 g | 43% | 34% |
+| Fat | 16 g | 30% | 23% |
+| Fiber | 4 g | 11% | 11% |
+| Sodium | 1,058 mg | 46% | 46% |
 
-**Storage:** 🥡 Fridge prep — 3–4 days
+**Storage:** 🥡 Fridge prep — 4 days.
 
-**Why it's filling:** 2 bags of broccoli and a 50/50 rice and cauliflower-rice base make a heaped plate at takeout-lite calories.
+**Why it's filling:** Sweet-savory Korean BBQ beef over a full cup of rice with veggies.
 
 ### Ingredients
-- 1½ lb flank steak or sirloin, sliced thin across the grain (partly frozen slices easiest)
-- ⅓ cup low-sodium soy sauce
-- ¾ cup low-sodium beef broth (the Instant Pot needs about 1 cup of total liquid to come to pressure)
-- 2 Tbsp brown sugar
-- 4 cloves garlic (minced), 1 Tbsp grated ginger
-- 1 tsp sesame oil
-- 2 Tbsp cornstarch + 3 Tbsp cold water
-- 2½ bags (12 oz each) broccoli florets, fresh or frozen (about 30 oz)
-- ½ cup dry white rice + 1 bag (about 14 oz) frozen cauliflower rice
-- 2 tsp sesame seeds
+- 1½ lb 93% lean ground beef
+- Bottled bulgogi / Korean BBQ sauce (about ¾ cup)
+- 2 pouches (8.8 oz) microwave white rice
+- 2 bags (12 oz) frozen stir-fry vegetables
 
 ### Instructions
-1. Start the rice in the rice cooker.
-2. Instant Pot on **Sauté** with the sesame oil: brown the beef in 2 batches, about 2 minutes each. It doesn't need to cook through.
-3. Add the soy sauce, broth, brown sugar, garlic and ginger and scrape the bottom. Seal and **Pressure Cook High 10 min**, then quick release.
-4. Meanwhile, microwave the broccoli (5–6 min covered) and the cauliflower rice.
-5. Back on **Sauté**: stir in the cornstarch slurry and simmer 1–2 minutes until glossy. Fold in the broccoli.
-6. Stir the cauliflower rice into the cooked rice. Serve the beef on top with sesame seeds.
+1. Brown the beef in a skillet until no pink remains (160°F). Drain.
+2. Stir in the bulgogi sauce and cook 2 min.
+3. Microwave the rice pouches and veggie bags per the packages.
+4. Split the rice, veggies and beef into 4 bowls.
 
 ### Notes
-- Swap: chicken thighs work the same way (Pressure Cook 8 min).
-- Storage: 3–4 days in the fridge. Freezes OK without the broccoli. Microwave to reheat.
+- Sprinkle sesame seeds or sliced green onion on top if you have them.
 
 ---
 
-## Gyudon (Japanese Beef and Onion Rice Bowl)
+## Beef & Broccoli
 
-**Serves:** 4 (2 dinners for two) · **Time:** 30 min (hands-on 15) · **Equipment:** Rice Cooker, large skillet (or Instant Pot on Sauté) · **Est. cost:** ~$24 total
-
-| Per serving | Amount | % of 1,600 day | % of 2,000 day |
-| --- | --- | --- | --- |
-| Calories | 500 kcal | 31% | 25% |
-| Protein | 47 g | 39% | 31% |
-| Carbs | 56 g | 35% | 28% |
-| Fat | 9 g | 17% | 13% |
-| Fiber | 10 g | 26% | 26% |
-| Sodium | 940 mg | 41% | 41% |
-
-**Storage:** 🥡 Fridge prep — 3 days
-
-**Why it's filling:** sweet-savory onions and a full bag of spinach simmered into the broth, over a 50/50 rice and cauliflower-rice base, with edamame on the side.
-
-### Ingredients
-- 1¼ lb (20 oz) sirloin, shaved paper-thin (or buy "shabu-shabu"/thin-sliced beef at an Asian market)
-- 2 large onions, sliced into half-moons
-- 1 cup low-sodium broth (or dashi)
-- ¼ cup low-sodium soy sauce
-- 3 Tbsp mirin + 2 tsp sugar
-- 2 tsp grated ginger
-- 10 oz baby spinach
-- ¾ cup dry Japanese short-grain rice + 5 cups frozen cauliflower rice
-- 1½ cups shelled edamame (frozen)
-- 4 green onions, sliced. Optional: pickled ginger, shichimi togarashi
-
-### Instructions
-1. Cook the rice in the rice cooker. Put the edamame in the steamer basket for the last 8 minutes.
-2. In a skillet, simmer the broth, soy, mirin, sugar and ginger. Add the onions and simmer 6–8 minutes until soft.
-3. Lay in the beef slices and simmer 2–3 minutes until just cooked. Stir in the spinach a handful at a time until wilted.
-4. Microwave the cauliflower rice and stir it into the rice. Top with the beef, onions and a spoon of the broth. Finish with green onions.
-
-### Notes
-- Traditionally topped with a raw or soft egg. It's skipped here per the egg rule.
-- Meal prep: store the beef-and-onion mixture separately from the rice (4 containers or 2 two-serving ones).
-- Storage: 3 days in the fridge. Reheat gently (microwave at 50% power, covered, with a splash of broth) so the beef doesn't toughen.
-
----
-
-## Air Fryer Burger Bowls with Potato Wedges
-
-**Serves:** 2 · **Time:** 35 min (hands-on 10) · **Equipment:** Air Fryer · **Est. cost:** ~$11 total
+**Serves:** 4 (2 meals for two) · **Time:** 20 min (hands-on 15) · **Equipment:** Skillet, microwave · **Est. cost:** ~$26 total
 
 | Per serving | Amount | % of 1,600 day | % of 2,000 day |
 | --- | --- | --- | --- |
-| Calories | 590 kcal | 37% | 30% |
+| Calories | 567 kcal | 35% | 28% |
 | Protein | 49 g | 41% | 33% |
-| Carbs | 57 g | 36% | 28% |
-| Fat | 19 g | 36% | 28% |
-| Fiber | 9 g | 24% | 24% |
-| Sodium | 1,370 mg | 60% | 60% |
+| Carbs | 62 g | 39% | 31% |
+| Fat | 14 g | 26% | 20% |
+| Fiber | 6 g | 15% | 15% |
+| Sodium | 1,076 mg | 47% | 47% |
 
-**Storage:** 🥡 Fridge prep — 3 days (patties and wedges; salad and sauce packed separately)
+**Storage:** 🥡 Fridge prep — 4 days.
 
-**Why it's filling:** all the burger flavors plus crispy potato wedges, over a huge salad instead of a bun. Potatoes are one of the most filling foods per calorie.
-
-### Ingredients
-- ¾ lb 93% lean ground beef, formed into 2 patties, salt and pepper
-- 1 lb russet potatoes, cut into wedges
-- 1 tsp olive oil, ½ tsp salt, ½ tsp garlic powder, ½ tsp smoked paprika
-- 6 cups chopped romaine + 1 cup shredded cabbage
-- 1 tomato (diced), ¼ cup dill pickle chips, ¼ red onion (sliced thin)
-- ¾ oz shredded sharp cheddar (a small handful)
-- **Burger sauce:** ⅓ cup nonfat Greek yogurt + 1 Tbsp ketchup + 1 tsp yellow mustard + a splash of pickle juice
-
-### Instructions
-1. Toss the wedges with the oil and seasoning. **Air fry 400°F for 20 min**, shaking halfway. Move them to a plate.
-2. **Air fry the patties at 375°F for 10–12 min**, flipping once, to 160°F. Put the cheese on for the last minute.
-3. Stir together the burger sauce.
-4. Build the bowls: greens, tomato, onion and pickles. Top with a sliced patty and the wedges and drizzle with sauce.
-
-### Notes
-- Grill option: if the grill works, grill the patties instead and keep the wedges in the air fryer.
-- Meal prep: cook the patties and wedges ahead. Reheat at 375°F for 4–5 min and keep the salad and sauce separate.
-- Storage: patties and wedges keep 3 days. The sauce keeps 5 days.
-
----
-
-## Costco Steak Night
-
-**Serves:** 2 · **Time:** 40 min (hands-on 10) · **Equipment:** Air Fryer (grill optional) · **Est. cost:** ~$16 total
-
-| Per serving | Amount | % of 1,600 day | % of 2,000 day |
-| --- | --- | --- | --- |
-| Calories | 480 kcal | 30% | 24% |
-| Protein | 50 g | 42% | 33% |
-| Carbs | 46 g | 29% | 23% |
-| Fat | 12 g | 23% | 18% |
-| Fiber | 10 g | 26% | 26% |
-| Sodium | 1,110 mg | 48% | 48% |
-
-**Storage:** 🥡 Fridge prep — 3 days
-
-**Why it's filling:** 6 oz of steak each with a full pound of green beans and crispy potatoes. It feels like a steakhouse plate at about 480 kcal.
+**Why it's filling:** Takeout-style beef and broccoli over a full cup of rice, without the takeout calories.
 
 ### Ingredients
-- 12 oz top sirloin steak, about 1" thick (Costco packs are cheapest per lb; freeze extras individually)
-- 12 oz baby Yukon or red potatoes, halved
-- 1 lb fresh green beans, trimmed
-- 2 tsp olive oil (split), ¾ tsp salt, black pepper, 1 tsp garlic powder
-- **Chive "sour cream":** ⅓ cup nonfat Greek yogurt + 1 sliced green onion (or chives) + pinch of salt
+- 1½ lb sirloin or flank steak, sliced thin (or buy pre-sliced stir-fry beef)
+- Bottled stir-fry sauce, about ½ cup (Kikkoman or Panda Express)
+- 2 bags (12 oz) steam-in-bag broccoli
+- 2 pouches (8.8 oz) microwave white rice
+- 1 tbsp oil
 
 ### Instructions
-1. Take the steak out 20 minutes early. Salt and pepper it generously.
-2. Toss the potatoes with 1 tsp oil and seasoning. **Air fry 400°F for 12 min.** Add the green beans tossed in the other 1 tsp oil and **air fry 8 more min**, shaking once. Tip them into a bowl and cover it.
-3. **Air fry the steak at 400°F for 9–12 min**, flipping halfway, to 145°F for medium (the USDA-safe temperature). Pull it at 130–135°F if you prefer medium-rare. Rest 5 minutes and slice against the grain.
-4. Serve with the potatoes, green beans and a dollop of the chive yogurt.
-
-### Notes
-- Grill option: grill the steak 4–5 min per side over high heat. The air fryer still does the sides.
-- Meal prep: sliced cold steak is great on a lunch salad the next day.
-- Storage: 3 days in the fridge. Reheat the steak briefly, in the air fryer at 350°F for 3 min, so it doesn't overcook.
+1. Heat the oil in a big skillet on high. Cook the beef 3–4 min, stirring, until browned.
+2. Pour in the stir-fry sauce and cook 1 min.
+3. Microwave the broccoli and rice per the packages.
+4. Stir the broccoli into the beef. Serve over the rice.
