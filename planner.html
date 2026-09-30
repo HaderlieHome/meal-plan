@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week Planner</title>
+<meta name="description" content="Plan the week's meals and build a shopping list. Saved on this device; share by export/import.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /*
+    Week planner + shopping list. Recipes come from the repo's .md files (same
+    source as index.html). The plan is saved in this browser's localStorage and
+    moved between devices with Export / Import (a .json file or a share link).
+  */
+  :root {
+    --bg: #faf7f2;
+    --surface: #ffffff;
+    --surface-2: #f3eee6;
+    --text: #2a2622;
+    --muted: #6f675e;
+    --border: #e6ded2;
+    --accent: #c2410c;
+    --accent-soft: #fde7da;
+    --good: #4d7c0f;
+    --warn: #b45309;
+    --shadow: 0 1px 2px rgba(42, 38, 34, .06), 0 4px 14px rgba(42, 38, 34, .05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1a1816;
+      --surface: #23201d;
+      --surface-2: #2c2825;
+      --text: #efe9e1;
+      --muted: #a89f94;
+      --border: #3a3531;
+      --accent: #fb8c4b;
+      --accent-soft: #3d2518;
+      --good: #a3d15c;
+      --warn: #f5b04a;
+      --shadow: none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1a1816;
+    --surface: #23201d;
+    --surface-2: #2c2825;
+    --text: #efe9e1;
+    --muted: #a89f94;
+    --border: #3a3531;
+    --accent: #fb8c4b;
+    --accent-soft: #3d2518;
+    --good: #a3d15c;
+    --warn: #f5b04a;
+    --shadow: none;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: var(--accent); }
+  button, input, select { font: inherit; color: inherit; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+
+  header { padding: 28px 0 4px; }
+  header h1 { font-family: Fraunces, Georgia, serif; font-size: clamp(1.9rem, 5vw, 2.6rem); line-height: 1.1; margin: 0 0 6px; }
+  header p { margin: 0; color: var(--muted); }
+  .header-links { margin-top: 8px; font-size: .92rem; }
+
+  .toolbar {
+    position: sticky; top: 0; z-index: 5; background: var(--bg);
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    padding: 14px 0 12px; border-bottom: 1px solid var(--border); margin-bottom: 20px;
+  }
+  .tabs { display: flex; gap: 6px; }
+  .btn {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+    padding: 6px 14px; cursor: pointer; font-size: .92rem; white-space: nowrap;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn.small { padding: 3px 10px; font-size: .82rem; }
+  .spacer { flex: 1; }
+  .icon-btn { background: none; border: 0; cursor: pointer; color: var(--muted); font-size: 1rem; padding: 0 4px; line-height: 1; }
+  .icon-btn:hover { color: var(--accent); }
+
+  /* Week grid */
+  .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; padding-bottom: 40px; }
+  @media (max-width: 980px) { .week { grid-template-columns: 1fr; } }
+  .day { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px; box-shadow: var(--shadow); min-width: 0; }
+  .day h2 { font-family: Fraunces, Georgia, serif; font-size: 1.15rem; margin: 0; }
+  .day-total { font-size: .78rem; color: var(--muted); margin: 2px 0 8px; font-variant-numeric: tabular-nums; }
+  .day-total b { color: var(--text); }
+  .slot { border-top: 1px solid var(--border); padding: 8px 0 4px; }
+  .slot-head { display: flex; justify-content: space-between; align-items: center; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .entry { display: flex; gap: 6px; align-items: flex-start; font-size: .88rem; margin: 5px 0; }
+  .entry a { color: var(--text); text-decoration: none; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+  .entry a:hover { color: var(--accent); }
+  .entry .sub { display: block; font-size: .74rem; color: var(--muted); }
+  .pill { font-size: .68rem; background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 1px 7px; margin-left: 4px; white-space: nowrap; }
+
+  .summary { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+  .tile { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; min-width: 140px; }
+  .tile b { display: block; font-size: 1.3rem; font-variant-numeric: tabular-nums; }
+  .tile span { font-size: .78rem; color: var(--muted); }
+
+  /* Shopping list */
+  .shop { max-width: 760px; padding-bottom: 48px; }
+  .section { margin-bottom: 22px; }
+  .section h2 { font-family: Fraunces, Georgia, serif; font-size: 1.2rem; margin: 0 0 6px; }
+  .item { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .item input { margin-top: 4px; accent-color: var(--accent); width: 18px; height: 18px; flex: none; }
+  .item .for { display: block; font-size: .76rem; color: var(--muted); }
+  .item.done .txt { text-decoration: line-through; color: var(--muted); }
+  .add-item { display: flex; gap: 8px; margin: 10px 0 24px; }
+  .add-item input { flex: 1; min-width: 0; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); }
+
+  /* Dialog */
+  dialog { border: 1px solid var(--border); border-radius: 16px; background: var(--surface); color: var(--text); padding: 0; width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
+  dialog::backdrop { background: rgba(0, 0, 0, .4); }
+  .dlg { display: flex; flex-direction: column; max-height: calc(100vh - 48px); }
+  .dlg-head { padding: 16px 16px 10px; border-bottom: 1px solid var(--border); }
+  .dlg-head h3 { margin: 0 0 8px; font-family: Fraunces, Georgia, serif; }
+  .dlg-head input { width: 100%; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); }
+  .dlg-body { overflow-y: auto; padding: 6px 16px; }
+  .dlg-foot { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .pick { display: flex; justify-content: space-between; gap: 10px; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--border); padding: 9px 0; cursor: pointer; }
+  .pick:hover .pick-name { color: var(--accent); }
+  .pick-meta { font-size: .78rem; color: var(--muted); white-space: nowrap; }
+  .pick[aria-pressed="true"] { background: var(--accent-soft); }
+  label.inline { display: flex; gap: 6px; align-items: center; font-size: .9rem; }
+  label.inline select, label.inline input[type="number"] { padding: 4px 8px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); }
+  label.inline input[type="number"] { width: 64px; }
+
+  .notice { background: var(--accent-soft); border-radius: 12px; padding: 12px 16px; margin: 0 0 16px; font-size: .92rem; }
+  .muted { color: var(--muted); }
+  .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 10px; font-size: .92rem; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 20; }
+  .toast.show { opacity: 1; }
+  input[type="file"] { display: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Week Planner</h1>
+    <p>Pick the week's meals, see daily totals, and get a shopping list. Saved on this device only. Use Export to send it to someone.</p>
+    <div class="header-links"><a href="./">← Recipes</a></div>
+  </header>
+
+  <div class="toolbar">
+    <div class="tabs">
+      <button class="btn" data-view="week">This Week</button>
+      <button class="btn" data-view="shop">Shopping List</button>
+    </div>
+    <span class="spacer"></span>
+    <button class="btn small" id="export-file">Export file</button>
+    <button class="btn small" id="copy-link">Copy share link</button>
+    <button class="btn small" id="import-btn">Import</button>
+    <button class="btn small" id="clear-week">New week</button>
+    <input type="file" id="import-file" accept="application/json,.json">
+  </div>
+
+  <main id="app"><p class="muted">Loading recipes…</p></main>
+</div>
+
+<dialog id="picker">
+  <form method="dialog" class="dlg">
+    <div class="dlg-head">
+      <h3 id="picker-title">Add a meal</h3>
+      <input type="search" id="picker-q" placeholder="Search recipes…" autocomplete="off">
+    </div>
+    <div class="dlg-body" id="picker-list"></div>
+    <div class="dlg-foot">
+      <label class="inline">Meals it covers
+        <input type="number" id="picker-count" min="1" max="7" value="1">
+      </label>
+      <span class="muted" style="font-size:.8rem">Extra meals go on the following days as leftovers.</span>
+      <span class="spacer"></span>
+      <button class="btn" value="cancel">Cancel</button>
+      <button class="btn primary" id="picker-add" value="add" disabled>Add</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  // ---- Config -------------------------------------------------------------
+  const REPO = "HaderlieHome/meal-plan";
+  const BRANCH = "main";
+  const MEALS = ["Breakfast", "Lunch", "Dinner", "Snack"];
+  const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const TARGETS = [1600, 2000];
+  const STORE_KEY = "mp-planner-v1";
+
+  const app = document.getElementById("app");
+  let recipes = [];
+  let byKey = {};
+  let view = "week";
+
+  // ---- Helpers ------------------------------------------------------------
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const slug = s => s.toLowerCase().trim().replace(/[^\p{L}\p{N}\s-]/gu, "").replace(/\s/g, "-");
+  const pretty = s => s.replace(/-/g, " ").replace(/^\w/, c => c.toUpperCase());
+  const num = s => (s == null ? null : parseFloat(String(s).replace(/,/g, "")));
+  const keyOf = r => `${r.path}#${r.anchor}`;
+  const toast = msg => { const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 2200); };
+
+  // ---- State (localStorage) -----------------------------------------------
+  const emptyPlan = () => ({ version: 1, days: Object.fromEntries(DAYS.map(d => [d, Object.fromEntries(MEALS.map(m => [m, []]))])), checked: {}, custom: [] });
+  let plan = emptyPlan();
+
+  function normalize(p) {
+    const base = emptyPlan();
+    if (!p || typeof p !== "object" || !p.days) throw new Error("Not a meal plan file");
+    for (const d of DAYS) for (const m of MEALS) {
+      const list = p.days?.[d]?.[m];
+      if (Array.isArray(list)) base.days[d][m] = list.filter(e => e && typeof e.key === "string").map(e => ({ key: e.key, leftover: !!e.leftover }));
+    }
+    if (p.checked && typeof p.checked === "object") base.checked = p.checked;
+    if (Array.isArray(p.custom)) base.custom = p.custom.filter(x => typeof x === "string");
+    return base;
+  }
+  function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(plan)); } catch {} }
+  function loadSaved() { try { const raw = localStorage.getItem(STORE_KEY); if (raw) plan = normalize(JSON.parse(raw)); } catch {} }
+
+  // ---- Recipes (read from the .md files) ----------------------------------
+  function field(body, name) { const m = body.match(new RegExp(`\\*\\*${name}:\\*\\*\\s*([^·\\n]+)`)); return m ? m[1].trim() : ""; }
+  function nutrient(body, name) { const m = body.match(new RegExp(`^\\|\\s*${name}\\s*\\|\\s*~?([\\d,.]+)`, "m")); return m ? num(m[1]) : null; }
+  function ingredients(body) {
+    const m = body.match(/^### Ingredients[^\n]*\n([\s\S]*?)(?=^### |\s*$(?![\s\S]))/m);
+    if (!m) return [];
+    return m[1].split("\n").filter(l => /^\s*- /.test(l)).map(l => l.replace(/^\s*- /, "").replace(/\*\*/g, "").trim());
+  }
+  function parseFile(path, text) {
+    const [meal, file] = path.split("/");
+    return text.split(/^## /m).slice(1).map(chunk => {
+      const nl = chunk.indexOf("\n");
+      const title = chunk.slice(0, nl).trim();
+      const body = chunk.slice(nl + 1);
+      const serves = field(body, "Serves");
+      const servings = num((serves.match(/\d+/) || [])[0]) || 2;
+      return {
+        path, meal, protein: pretty(file.replace(/\.md$/, "")), title, anchor: slug(title),
+        servings, mealsForTwo: Math.max(1, Math.floor(servings / 2)),
+        kcal: nutrient(body, "Calories"), protein_g: nutrient(body, "Protein"), fiber: nutrient(body, "Fiber"),
+        ingredients: ingredients(body),
+      };
+    });
+  }
+  async function load() {
+    let files;
+    try { files = JSON.parse(sessionStorage.getItem("mp-tree") || "null"); } catch {}
+    if (!files) {
+      const res = await fetch(`https://api.github.com/repos/${REPO}/git/trees/${BRANCH}?recursive=1`);
+      if (!res.ok) throw new Error(`GitHub API ${res.status}`);
+      files = (await res.json()).tree.map(t => t.path).filter(p => /^[^/]+\/[^/]+\.md$/.test(p) && MEALS.includes(p.split("/")[0]));
+      try { sessionStorage.setItem("mp-tree", JSON.stringify(files)); } catch {}
+    }
+    const texts = await Promise.all(files.map(async p => {
+      let res = await fetch(p, { cache: "no-cache" }).catch(() => null);
+      if (!res || !res.ok) res = await fetch(`https://raw.githubusercontent.com/${REPO}/${BRANCH}/${p}`);
+      return res.ok ? res.text() : "";
+    }));
+    recipes = files.flatMap((f, i) => parseFile(f, texts[i]));
+    byKey = Object.fromEntries(recipes.map(r => [keyOf(r), r]));
+  }
+
+  // ---- Week view ----------------------------------------------------------
+  function dayTotals(d) {
+    let kcal = 0, protein = 0;
+    for (const m of MEALS) for (const e of plan.days[d][m]) {
+      const r = byKey[e.key]; if (!r) continue;
+      kcal += r.kcal || 0; protein += r.protein_g || 0;
+    }
+    return { kcal: Math.round(kcal), protein: Math.round(protein) };
+  }
+
+  function renderWeek() {
+    const planned = DAYS.flatMap(d => MEALS.flatMap(m => plan.days[d][m])).length;
+    const totals = DAYS.map(dayTotals).filter(t => t.kcal > 0);
+    const avg = k => totals.length ? Math.round(totals.reduce((s, t) => s + t[k], 0) / totals.length) : 0;
+    app.innerHTML = `
+      ${planned ? "" : `<div class="notice">Tap <b>+</b> on any slot to add a meal. Batch recipes can fill several days at once. Leftovers aren't added to the shopping list twice.</div>`}
+      <div class="summary">
+        <div class="tile"><b>${planned}</b><span>meals planned</span></div>
+        <div class="tile"><b>${avg("kcal") || "–"}</b><span>avg kcal / person / planned day</span></div>
+        <div class="tile"><b>${avg("protein") ? avg("protein") + " g" : "–"}</b><span>avg protein / person / planned day</span></div>
+      </div>
+      <div class="week">${DAYS.map(d => {
+        const t = dayTotals(d);
+        const status = t.kcal === 0 ? "" : t.kcal <= TARGETS[0] ? ` <span style="color:var(--good)">≤ 1,600</span>` : t.kcal <= TARGETS[1] ? ` <span style="color:var(--good)">≤ 2,000</span>` : ` <span style="color:var(--warn)">over 2,000</span>`;
+        return `<section class="day">
+          <h2>${d}</h2>
+          <div class="day-total"><b>${t.kcal || 0}</b> kcal · <b>${t.protein || 0}</b> g protein per person${status}</div>
+          ${MEALS.map(m => `<div class="slot">
+            <div class="slot-head"><span>${m}</span><button class="icon-btn" title="Add ${m.toLowerCase()}" data-add="${d}|${m}">＋</button></div>
+            ${plan.days[d][m].map((e, i) => {
+              const r = byKey[e.key];
+              const name = r ? esc(r.title) : `<span class="muted">Missing recipe</span>`;
+              const sub = r ? `${r.kcal ?? "–"} kcal · ${r.protein_g ?? "–"} g protein` : esc(e.key);
+              const href = r ? `./#/${encodeURI(r.path)}/${r.anchor}` : "#";
+              return `<div class="entry"><a href="${href}">${name}${e.leftover ? `<span class="pill">leftovers</span>` : ""}<span class="sub">${sub}</span></a>
+                <button class="icon-btn" title="Remove" data-del="${d}|${m}|${i}">✕</button></div>`;
+            }).join("")}
+          </div>`).join("")}
+        </section>`;
+      }).join("")}</div>`;
+    app.querySelectorAll("[data-add]").forEach(b => b.onclick = () => openPicker(...b.dataset.add.split("|")));
+    app.querySelectorAll("[data-del]").forEach(b => b.onclick = () => {
+      const [d, m, i] = b.dataset.del.split("|");
+      plan.days[d][m].splice(+i, 1); save(); renderWeek();
+    });
+  }
+
+  // ---- Picker dialog ------------------------------------------------------
+  const dlg = document.getElementById("picker");
+  const pq = document.getElementById("picker-q");
+  const plist = document.getElementById("picker-list");
+  const pcount = document.getElementById("picker-count");
+  const padd = document.getElementById("picker-add");
+  let pick = { day: null, meal: null, key: null };
+
+  function openPicker(day, meal) {
+    pick = { day, meal, key: null };
+    document.getElementById("picker-title").textContent = `Add ${meal.toLowerCase()} · ${day}`;
+    pq.value = ""; pcount.value = 1; padd.disabled = true;
+    renderPickList();
+    dlg.showModal();
+    pq.focus();
+  }
+  function renderPickList() {
+    const q = pq.value.toLowerCase();
+    // Recipes for this meal time first, then everything else (e.g. leftover dinner for lunch).
+    const list = recipes
+      .filter(r => !q || (r.title + " " + r.protein + " " + r.meal).toLowerCase().includes(q))
+      .sort((a, b) => (b.meal === pick.meal) - (a.meal === pick.meal) || a.protein.localeCompare(b.protein));
+    plist.innerHTML = list.map(r => `<button type="button" class="pick" data-key="${esc(keyOf(r))}" aria-pressed="${pick.key === keyOf(r)}">
+        <span><span class="pick-name">${esc(r.title)}</span><br><span class="pick-meta">${esc(r.meal)} · ${esc(r.protein)} · makes ${r.mealsForTwo} meal${r.mealsForTwo > 1 ? "s" : ""} for two</span></span>
+        <span class="pick-meta">${r.kcal ?? "–"} kcal<br>${r.protein_g ?? "–"} g</span>
+      </button>`).join("") || `<p class="muted">No recipes match.</p>`;
+    plist.querySelectorAll(".pick").forEach(b => b.onclick = () => {
+      pick.key = b.dataset.key;
+      pcount.value = Math.min(byKey[pick.key].mealsForTwo, 7 - DAYS.indexOf(pick.day));
+      padd.disabled = false;
+      renderPickList();
+    });
+  }
+  pq.oninput = renderPickList;
+  dlg.addEventListener("close", () => {
+    if (dlg.returnValue !== "add" || !pick.key) return;
+    const n = Math.max(1, Math.min(+pcount.value || 1, 7));
+    const start = DAYS.indexOf(pick.day);
+    for (let i = 0; i < n && start + i < DAYS.length; i++) {
+      plan.days[DAYS[start + i]][pick.meal].push({ key: pick.key, leftover: i > 0 });
+    }
+    save(); renderWeek();
+  });
+
+  // ---- Shopping list ------------------------------------------------------
+  const SECTIONS = [
+    ["Frozen", /\bfrozen\b/i],
+    ["Pantry", /\b(seasoning|spice|spices|whey|protein powder|almond milk|cereal|oats|dried|powder|paprika|cumin|cinnamon|flakes)\b/i],
+    ["Canned & Jarred", /\b(canned|can|cans|jar|jarred|pouch|pouches|broth|stock|salsa|marinara|crushed tomatoes|diced tomatoes|tomato paste|coconut milk)\b/i],
+    ["Meat & Seafood", /\b(chicken|beef|steak|sirloin|turkey|pork|ham|bacon|sausage|salmon|shrimp|cod|tuna|fish|jerky|beef stick|roast beef|deli)\b/i],
+    ["Dairy", /\b(yogurt|cheese|milk|cottage|parmesan|feta|mozzarella|cheddar|swiss|butter|cream|kefir|sour cream|fairlife)\b/i],
+    ["Bread & Tortillas", /\b(bread|tortilla|tortillas|pita|bun|buns|wrap|wraps|bagel|english muffin)\b/i],
+    ["Produce", /\b(onion|onions|garlic|ginger|carrot|carrots|potato|potatoes|sweet potato|broccoli|cabbage|coleslaw|slaw mix|lettuce|romaine|spinach|kale|salad|tomato|tomatoes|bell pepper|peppers|jalape|zucchini|squash|cucumber|cucumbers|mushroom|mushrooms|celery|avocado|apple|apples|banana|bananas|berries|raspberr|blueberr|strawberr|grapes|pear|pears|clementine|clementines|orange|oranges|lemon|lemons|lime|limes|cilantro|scallion|scallions|green onion|parsley|basil|herbs|edamame|pineapple|corn)\b/i],
+  ];
+  const sectionOf = text => (SECTIONS.find(([, re]) => re.test(text)) || ["Pantry"])[0];
+  const ORDER = ["Produce", "Meat & Seafood", "Dairy", "Bread & Tortillas", "Frozen", "Canned & Jarred", "Pantry", "Extras"];
+
+  function shoppingItems() {
+    // Count how many times each recipe gets cooked (leftover entries don't count).
+    const cooks = {};
+    for (const d of DAYS) for (const m of MEALS) for (const e of plan.days[d][m]) if (!e.leftover) cooks[e.key] = (cooks[e.key] || 0) + 1;
+    const items = [];
+    for (const [key, times] of Object.entries(cooks)) {
+      const r = byKey[key]; if (!r) continue;
+      r.ingredients.forEach((ing, i) => items.push({ id: `${key}|${i}|${ing}`, text: ing, times, recipe: r.title, section: sectionOf(ing) }));
+    }
+    plan.custom.forEach((c, i) => items.push({ id: `custom|${c}`, text: c, times: 1, recipe: null, section: "Extras", customIndex: i }));
+    return items;
+  }
+
+  function renderShop() {
+    const items = shoppingItems();
+    const groups = ORDER.map(s => [s, items.filter(i => i.section === s)]).filter(([, l]) => l.length);
+    const left = items.filter(i => !plan.checked[i.id]).length;
+    app.innerHTML = `<div class="shop">
+      ${items.length ? `<p class="muted">${left} of ${items.length} items left. Quantities are per batch, as written in each recipe. <b>×2</b> means you're cooking that recipe twice this week.</p>`
+        : `<div class="notice">Your shopping list fills in automatically from the meals on <b>This Week</b>.</div>`}
+      <div class="add-item"><input id="custom-text" placeholder="Add something else (paper towels, coffee…)"><button class="btn" id="custom-add">Add</button></div>
+      ${groups.map(([s, list]) => `<div class="section"><h2>${s}</h2>
+        ${list.map(i => `<label class="item ${plan.checked[i.id] ? "done" : ""}">
+          <input type="checkbox" data-id="${esc(i.id)}" ${plan.checked[i.id] ? "checked" : ""}>
+          <span><span class="txt">${esc(i.text)}${i.times > 1 ? ` <b>×${i.times}</b>` : ""}</span>
+          ${i.recipe ? `<span class="for">${esc(i.recipe)}</span>` : `<span class="for"><button type="button" class="icon-btn" data-rm="${i.customIndex}">remove</button></span>`}</span>
+        </label>`).join("")}
+      </div>`).join("")}
+      ${items.some(i => plan.checked[i.id]) ? `<button class="btn small" id="uncheck">Uncheck all</button>` : ""}
+    </div>`;
+    app.querySelectorAll("[data-id]").forEach(cb => cb.onchange = () => {
+      if (cb.checked) plan.checked[cb.dataset.id] = true; else delete plan.checked[cb.dataset.id];
+      save(); cb.closest(".item").classList.toggle("done", cb.checked);
+      const l = shoppingItems().filter(i => !plan.checked[i.id]).length;
+      const p = app.querySelector(".shop > p"); if (p) p.firstChild.textContent = `${l} of ${items.length} items left. `;
+    });
+    app.querySelectorAll("[data-rm]").forEach(b => b.onclick = e => { e.preventDefault(); plan.custom.splice(+b.dataset.rm, 1); save(); renderShop(); });
+    const input = app.querySelector("#custom-text");
+    const addCustom = () => { const v = input.value.trim(); if (!v) return; plan.custom.push(v); save(); renderShop(); };
+    app.querySelector("#custom-add").onclick = addCustom;
+    input.onkeydown = e => { if (e.key === "Enter") addCustom(); };
+    const un = app.querySelector("#uncheck");
+    if (un) un.onclick = () => { plan.checked = {}; save(); renderShop(); };
+  }
+
+  // ---- Export / Import ----------------------------------------------------
+  const b64encode = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  const b64decode = s => decodeURIComponent(escape(atob(s.replace(/-/g, "+").replace(/_/g, "/"))));
+
+  function applyImport(data) {
+    const next = normalize(data);
+    const count = DAYS.flatMap(d => MEALS.flatMap(m => next.days[d][m])).length;
+    if (!confirm(`Replace your current week with the imported plan (${count} meals)?`)) return false;
+    plan = next; save(); render(); toast("Plan imported");
+    return true;
+  }
+
+  document.getElementById("export-file").onclick = () => {
+    const blob = new Blob([JSON.stringify(plan, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `meal-plan-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
+  document.getElementById("copy-link").onclick = async () => {
+    const url = `${location.origin}${location.pathname}#import=${b64encode(JSON.stringify(plan))}`;
+    try { await navigator.clipboard.writeText(url); toast("Share link copied"); }
+    catch { prompt("Copy this link:", url); }
+  };
+  const fileInput = document.getElementById("import-file");
+  document.getElementById("import-btn").onclick = () => fileInput.click();
+  fileInput.onchange = async () => {
+    const f = fileInput.files[0]; fileInput.value = "";
+    if (!f) return;
+    try { applyImport(JSON.parse(await f.text())); } catch (e) { alert("Couldn't import that file: " + e.message); }
+  };
+  document.getElementById("clear-week").onclick = () => {
+    if (!confirm("Clear the whole week and shopping list?")) return;
+    plan = emptyPlan(); save(); render();
+  };
+  function importFromHash() {
+    const m = location.hash.match(/^#import=(.+)$/);
+    if (!m) return;
+    history.replaceState(null, "", location.pathname);
+    try { applyImport(JSON.parse(b64decode(m[1]))); } catch (e) { alert("That share link didn't work: " + e.message); }
+  }
+
+  // ---- Tabs ---------------------------------------------------------------
+  document.querySelectorAll("[data-view]").forEach(b => b.onclick = () => { view = b.dataset.view; render(); });
+  function render() {
+    document.querySelectorAll("[data-view]").forEach(b => b.setAttribute("aria-pressed", b.dataset.view === view));
+    view === "shop" ? renderShop() : renderWeek();
+  }
+
+  loadSaved();
+  load().then(() => { render(); importFromHash(); }).catch(e => {
+    app.innerHTML = `<div class="notice"><b>Couldn't load the recipes.</b> ${esc(e.message)}. If you opened this file straight from disk, serve the folder instead (e.g. VS Code "Live Server"), or open it on GitHub Pages.</div>`;
+  });
+})();
+</script>
+</body>
+</html>
